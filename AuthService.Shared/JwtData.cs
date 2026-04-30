@@ -1,0 +1,10 @@
+namespace AuthService.Shared
+{
+    public class JwtData
+    {
+        //json web token
+        public string Jwt { get; set; }
+        //refresh token
+        public string Rft { get; set; }
+    }
+}
