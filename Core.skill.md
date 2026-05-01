@@ -50,3 +50,5 @@ Bộ quy tắc chung về tiêu chuẩn lập trình, quản lý mã nguồn và
 ## 6. Tư duy Sản phẩm (Product Mindset)
 - **Sẵn sàng cho CI/CD**: Mã nguồn phải luôn ở trạng thái "Build & Run" được ngay sau khi clone.
 - **README chất lượng**: Mỗi dự án phải có file `README.md` hướng dẫn Setup môi trường trong tối đa 5 phút.
+## 7. Quản lý session (Extra Agent brain)
+- **Lưu vết trao đổi**: Sau khi kết thúc cần lưu tóm tắt vào trong thư mục Session theo nguyên tắc: Sessions/Session_YYYY-MM-DD.md
