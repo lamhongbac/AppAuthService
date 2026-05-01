@@ -1,0 +1,413 @@
+@page "/users"
+@rendermode InteractiveServer
+@using AuthServiceAdmin.Services
+
+<div>
+    <h1 class="dashboard-title">Users & Assignment</h1>
+    <p class="dashboard-subtitle">Create users and assign access roles across applications via API gateway</p>
+</div>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="toast-premium toast-success">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        <span>@successMessage</span>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="toast-premium toast-error">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>@errorMessage</span>
+    </div>
+}
+
+<div class="grid-cols-12">
+    <!-- User Creation -->
+    <div class="col-span-12 col-span-4">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                Register New User
+            </h3>
+            
+            <div class="form-group">
+                <label class="form-label">Select Company</label>
+                <InputSelect class="form-input" @bind-Value="selectedApiKey" @bind-Value:after="OnCompanyChanged">
+                    <option value="">Select a Company...</option>
+                    @if (companies != null)
+                    {
+                        @foreach (var comp in companies)
+                        {
+                            <option value="@comp.RegKey">@comp.Name (@comp.RegKey)</option>
+                        }
+                    }
+                </InputSelect>
+            </div>
+
+            <hr style="border-top: 1px solid var(--border-color); margin: 1.5rem 0;" />
+
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <InputText class="form-input" @bind-Value="createRequest.UserName" placeholder="john.doe" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <InputText class="form-input" @bind-Value="createRequest.FullName" placeholder="John Doe" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <InputText type="password" class="form-input" @bind-Value="createRequest.Password" placeholder="Minimum 6 characters" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <InputText class="form-input" @bind-Value="createRequest.Email" placeholder="john@example.com" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Mobile</label>
+                <InputText class="form-input" @bind-Value="createRequest.Mobile" placeholder="+84123456789" />
+            </div>
+
+            <button @onclick="HandleCreateUser" class="btn-premium w-100" disabled="@isSaving">
+                @if (isSaving)
+                {
+                    <span class="loading-spinner"></span>
+                }
+                else
+                {
+                    <span>Register User</span>
+                }
+            </button>
+        </div>
+    </div>
+
+    <!-- User Listing & Roles Assignment -->
+    <div class="col-span-12 col-span-8">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                Assign Roles to Selected User
+            </h3>
+
+            <div class="grid-cols-12">
+                <div class="col-span-12 col-span-6">
+                    <div class="form-group">
+                        <label class="form-label">Select User</label>
+                        <InputSelect class="form-input" @bind-Value="assignRequest.UserName" @bind-Value:after="OnUserSelectionChanged">
+                            <option value="">Select a User...</option>
+                            @if (allUsers != null)
+                            {
+                                @foreach (var u in allUsers)
+                                {
+                                    <option value="@u.UserName">@u.FullName (@u.UserName)</option>
+                                }
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+                <div class="col-span-12 col-span-6">
+                    <div class="form-group">
+                        <label class="form-label">Select Application</label>
+                        <InputSelect class="form-input" @bind-Value="assignRequest.AppNumber" @bind-Value:after="OnAppSelectionChanged">
+                            <option value="">Select an Application...</option>
+                            @if (filteredApps != null)
+                            {
+                                @foreach (var app in filteredApps)
+                                {
+                                    <option value="@app.Number">@app.Name (@app.Number)</option>
+                                }
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(assignRequest.UserName) && !string.IsNullOrEmpty(assignRequest.AppNumber))
+            {
+                <h4 class="card-title mt-4">Assign Roles in Selected App</h4>
+                
+                @if (filteredRoles == null || !filteredRoles.Any())
+                {
+                    <p style="color: var(--text-muted); font-style: italic;">No roles available in this application.</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="premium-table">
+                            <thead>
+                                <tr>
+                                    <th>Role Number</th>
+                                    <th>Role Name</th>
+                                    <th>Assigned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in filteredRoles)
+                                {
+                                    bool isAssigned = assignRequest.RoleNumbers.Contains(role.Number);
+                                    <tr>
+                                        <td><strong>@role.Number</strong></td>
+                                        <td>@role.Name</td>
+                                        <td>
+                                            <input type="checkbox" checked="@isAssigned" @onchange="e => OnRoleAssignmentToggled(role.Number, (bool?)e.Value)" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <button @onclick="HandleAssignRoles" class="btn-premium mt-3">
+                        Save Assigned Roles
+                    </button>
+                }
+            }
+        </div>
+
+        <div class="glass-card mt-4">
+            <h3 class="card-title">All Registered Users</h3>
+            <div class="table-responsive">
+                <table class="premium-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (allUsers == null)
+                        {
+                            <tr><td colspan="4">Loading users...</td></tr>
+                        }
+                        else if (!allUsers.Any())
+                        {
+                            <tr><td colspan="4">No users registered yet.</td></tr>
+                        }
+                        else
+                        {
+                            @foreach (var u in allUsers)
+                            {
+                                <tr>
+                                    <td><strong>@u.UserName</strong></td>
+                                    <td>@u.FullName</td>
+                                    <td>@u.Email</td>
+                                    <td>@u.Mobile</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private AuthServiceApiClient ApiClient { get; set; } = default!;
+
+    private string selectedApiKey = "";
+    private List<CompanyVM>? companies;
+    private List<ApplicationVM>? allApps;
+    private List<ApplicationVM>? filteredApps;
+    private List<AppUserVM>? allUsers;
+    private List<AppRoleVM>? filteredRoles;
+
+    private CreateAppUserRequest createRequest = new();
+    private AssignUserRolesRequest assignRequest = new();
+
+    private string successMessage = "";
+    private string errorMessage = "";
+    private bool isSaving = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCompanies();
+        await LoadApplications();
+        await LoadUsers();
+    }
+
+    private async Task LoadCompanies()
+    {
+        var result = await ApiClient.GetCompaniesAsync();
+        if (result.OK)
+        {
+            companies = result.GetContentAs<List<CompanyVM>>() ?? new();
+        }
+        else
+        {
+            companies = new();
+        }
+    }
+
+    private async Task LoadApplications()
+    {
+        var result = await ApiClient.GetApplicationsAsync();
+        if (result.OK)
+        {
+            allApps = result.GetContentAs<List<ApplicationVM>>() ?? new();
+        }
+        else
+        {
+            allApps = new();
+        }
+    }
+
+    private async Task LoadUsers()
+    {
+        var result = await ApiClient.GetUsersAsync();
+        if (result.OK)
+        {
+            allUsers = result.GetContentAs<List<AppUserVM>>() ?? new();
+        }
+        else
+        {
+            allUsers = new();
+        }
+    }
+
+    private async Task OnCompanyChanged()
+    {
+        filteredApps = null;
+        assignRequest.AppNumber = "";
+        assignRequest.RoleNumbers.Clear();
+        filteredRoles = null;
+
+        if (string.IsNullOrEmpty(selectedApiKey)) return;
+
+        var company = companies?.FirstOrDefault(c => c.RegKey == selectedApiKey);
+        if (company != null)
+        {
+            filteredApps = allApps?.Where(a => a.CompanyId == company.Id).ToList();
+        }
+    }
+
+    private async Task OnUserSelectionChanged()
+    {
+        await LoadRolesForUser();
+    }
+
+    private async Task OnAppSelectionChanged()
+    {
+        filteredRoles = null;
+        assignRequest.RoleNumbers.Clear();
+
+        if (string.IsNullOrEmpty(assignRequest.AppNumber)) return;
+
+        var app = filteredApps?.FirstOrDefault(a => a.Number == assignRequest.AppNumber);
+        if (app != null)
+        {
+            var result = await ApiClient.GetRolesByAppAsync(app.Id);
+            if (result.OK)
+            {
+                filteredRoles = result.GetContentAs<List<AppRoleVM>>() ?? new();
+            }
+            else
+            {
+                filteredRoles = new();
+            }
+
+            await LoadRolesForUser();
+        }
+    }
+
+    private async Task LoadRolesForUser()
+    {
+        assignRequest.RoleNumbers.Clear();
+    }
+
+    private void OnRoleAssignmentToggled(string roleNumber, bool? val)
+    {
+        if (val == true)
+        {
+            if (!assignRequest.RoleNumbers.Contains(roleNumber)) assignRequest.RoleNumbers.Add(roleNumber);
+        }
+        else
+        {
+            assignRequest.RoleNumbers.Remove(roleNumber);
+        }
+    }
+
+    private async Task HandleCreateUser()
+    {
+        if (string.IsNullOrEmpty(selectedApiKey))
+        {
+            errorMessage = "Please select a company to associate the registration.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(createRequest.UserName) || string.IsNullOrEmpty(createRequest.FullName) || string.IsNullOrEmpty(createRequest.Password))
+        {
+            errorMessage = "Username, Full Name, and Password are required.";
+            return;
+        }
+
+        isSaving = true;
+        successMessage = "";
+        errorMessage = "";
+
+        try
+        {
+            var result = await ApiClient.CreateUserAsync(selectedApiKey, createRequest);
+            if (result.OK)
+            {
+                successMessage = result.Message ?? "User registered successfully!";
+                createRequest = new();
+                await LoadUsers();
+            }
+            else
+            {
+                errorMessage = result.Message ?? "Failed to register user.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private async Task HandleAssignRoles()
+    {
+        if (string.IsNullOrEmpty(selectedApiKey))
+        {
+            errorMessage = "Please select a company.";
+            return;
+        }
+
+        isSaving = true;
+        successMessage = "";
+        errorMessage = "";
+
+        try
+        {
+            var result = await ApiClient.AssignRolesAsync(selectedApiKey, assignRequest);
+            if (result.OK)
+            {
+                successMessage = result.Message ?? "User roles assigned successfully!";
+                await LoadRolesForUser();
+            }
+            else
+            {
+                errorMessage = result.Message ?? "Failed to assign roles.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+}

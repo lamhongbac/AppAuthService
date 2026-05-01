@@ -1,9 +1,11 @@
 using AppAuth.BLL.Interfaces;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
+using AuthService.DAL.Repos;
 using MSA.Shared;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AppAuthService.Controllers
 {
@@ -12,11 +14,13 @@ namespace AppAuthService.Controllers
     public class RoleController : BaseController
     {
         private readonly IRoleService _roleService;
+        private readonly IAppRoleRepository _roleRepository;
 
-        public RoleController(IRoleService roleService, IApiKeyService apiKeyService)
+        public RoleController(IRoleService roleService, IApiKeyService apiKeyService, IAppRoleRepository roleRepository)
             : base(apiKeyService)
         {
             _roleService = roleService;
+            _roleRepository = roleRepository;
         }
 
         [HttpPost("create")]
@@ -41,6 +45,13 @@ namespace AppAuthService.Controllers
             }
 
             return BadRequest(result);
+        }
+
+        [HttpGet("app/{appId}")]
+        public async Task<ActionResult<BOProcessResult>> GetByApp(int appId)
+        {
+            var roles = await _roleRepository.FindAsync(r => r.AppId == appId);
+            return Ok(BOProcessResult.Success(roles.ToList()));
         }
     }
 }

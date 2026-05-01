@@ -2,8 +2,10 @@ using AppAuth.BLL.Interfaces;
 using MSA.Shared;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
+using AuthService.DAL.Repos;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AppAuthService.Controllers
 {
@@ -12,10 +14,12 @@ namespace AppAuthService.Controllers
     public class CompanyController : ControllerBase
     {
         private readonly ICompanyService _companyService;
+        private readonly ICompanyRepository _companyRepository;
 
-        public CompanyController(ICompanyService companyService)
+        public CompanyController(ICompanyService companyService, ICompanyRepository companyRepository)
         {
             _companyService = companyService;
+            _companyRepository = companyRepository;
         }
 
         [HttpPost("register")]
@@ -34,6 +38,13 @@ namespace AppAuthService.Controllers
             }
 
             return BadRequest(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<BOProcessResult>> Get()
+        {
+            var companies = await _companyRepository.GetAllAsync();
+            return Ok(BOProcessResult.Success(companies.ToList()));
         }
     }
 }

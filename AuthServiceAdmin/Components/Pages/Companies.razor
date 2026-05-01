@@ -1,0 +1,180 @@
+@page "/companies"
+@rendermode InteractiveServer
+@using AuthServiceAdmin.Services
+
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="dashboard-title">Companies Management</h1>
+        <p class="dashboard-subtitle">Register and manage enterprise organizations over API</p>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="toast-premium toast-success">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        <span>@successMessage</span>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="toast-premium toast-error">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>@errorMessage</span>
+    </div>
+}
+
+<div class="grid-cols-12">
+    <!-- Form to Register -->
+    <div class="col-span-12 col-span-4">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Register Company
+            </h3>
+            <EditForm Model="registerRequest" OnValidSubmit="HandleRegister" FormName="company-reg">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="toast-premium toast-error" />
+
+                <div class="form-group">
+                    <label class="form-label" for="comp-name">Company Name</label>
+                    <InputText id="comp-name" class="form-input" @bind-Value="registerRequest.Name" placeholder="Enterprise Inc." />
+                    <ValidationMessage For="@(() => registerRequest.Name)" class="text-error" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="comp-number">Company Number (RegCode)</label>
+                    <InputText id="comp-number" class="form-input" @bind-Value="registerRequest.Number" placeholder="ENT001" />
+                    <ValidationMessage For="@(() => registerRequest.Number)" class="text-error" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="comp-desc">Description</label>
+                    <InputTextArea id="comp-desc" class="form-input" @bind-Value="registerRequest.Description" rows="3" placeholder="Additional details..." />
+                    <ValidationMessage For="@(() => registerRequest.Description)" class="text-error" />
+                </div>
+
+                <button type="submit" class="btn-premium w-100 mt-2" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="loading-spinner"></span>
+                    }
+                    else
+                    {
+                        <span>Register Company</span>
+                    }
+                </button>
+            </EditForm>
+        </div>
+    </div>
+
+    <!-- List of Companies -->
+    <div class="col-span-12 col-span-8">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                Existing Companies
+            </h3>
+            
+            <div class="table-responsive">
+                <table class="premium-table">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Reg Key</th>
+                            <th>Created On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (companies == null)
+                        {
+                            <tr>
+                                <td colspan="4">Loading companies...</td>
+                            </tr>
+                        }
+                        else if (!companies.Any())
+                        {
+                            <tr>
+                                <td colspan="4">No companies registered yet.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var comp in companies)
+                            {
+                                <tr>
+                                    <td><strong style="color: #60a5fa">@comp.RegKey</strong></td>
+                                    <td>@comp.Name</td>
+                                    <td>
+                                        <span class="badge-premium">@comp.RegKey</span>
+                                    </td>
+                                    <td>@comp.CreatedOn.ToLocalTime().ToString("g")</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private AuthServiceApiClient ApiClient { get; set; } = default!;
+
+    private CompanyRegistrationRequest registerRequest = new();
+    private List<CompanyVM>? companies;
+    private string successMessage = "";
+    private string errorMessage = "";
+    private bool isSaving = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCompanies();
+    }
+
+    private async Task LoadCompanies()
+    {
+        var result = await ApiClient.GetCompaniesAsync();
+        if (result.OK)
+        {
+            companies = result.GetContentAs<List<CompanyVM>>() ?? new();
+        }
+        else
+        {
+            companies = new();
+        }
+    }
+
+    private async Task HandleRegister()
+    {
+        isSaving = true;
+        successMessage = "";
+        errorMessage = "";
+
+        try
+        {
+            var res = await ApiClient.RegisterCompanyAsync(registerRequest);
+            if (res.OK)
+            {
+                successMessage = res.Message ?? "Company registered successfully!";
+                registerRequest = new();
+                await LoadCompanies();
+            }
+            else
+            {
+                errorMessage = res.Message ?? "Failed to register company.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+}

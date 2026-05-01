@@ -1,9 +1,11 @@
 using AppAuth.BLL.Interfaces;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
+using AuthService.DAL.Repos;
 using MSA.Shared;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AppAuthService.Controllers
 {
@@ -12,11 +14,19 @@ namespace AppAuthService.Controllers
     public class ApplicationController : BaseController
     {
         private readonly IApplicationService _applicationService;
+        private readonly IApplicationRepository _applicationRepository;
+        private readonly IAppObjectRepository _appObjectRepository;
 
-        public ApplicationController(IApplicationService applicationService, IApiKeyService apiKeyService) 
+        public ApplicationController(
+            IApplicationService applicationService, 
+            IApiKeyService apiKeyService,
+            IApplicationRepository applicationRepository,
+            IAppObjectRepository appObjectRepository) 
             : base(apiKeyService)
         {
             _applicationService = applicationService;
+            _applicationRepository = applicationRepository;
+            _appObjectRepository = appObjectRepository;
         }
 
         [HttpPost("register")]
@@ -65,6 +75,20 @@ namespace AppAuthService.Controllers
             }
 
             return BadRequest(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<BOProcessResult>> Get()
+        {
+            var apps = await _applicationRepository.GetAllAsync();
+            return Ok(BOProcessResult.Success(apps.ToList()));
+        }
+
+        [HttpGet("{appId}/objects")]
+        public async Task<ActionResult<BOProcessResult>> GetObjects(int appId)
+        {
+            var objs = await _appObjectRepository.FindAsync(o => o.AppId == appId);
+            return Ok(BOProcessResult.Success(objs.ToList()));
         }
     }
 }

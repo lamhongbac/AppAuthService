@@ -81,6 +81,34 @@ namespace MSA.Utils
 
             return result;
         }
-    }
 
+        public static T? GetContentAs<T>(this MSA.Shared.BOProcessResult result)
+        {
+            if (result?.Content == null) return default;
+            if (result.Content is T direct) return direct;
+
+            if (result.Content is System.Text.Json.JsonElement elem)
+            {
+                try
+                {
+                    return System.Text.Json.JsonSerializer.Deserialize<T>(elem.GetRawText(), new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+                catch
+                {
+                    return default;
+                }
+            }
+
+            try
+            {
+                string jsonText = result.Content.ToString() ?? "{}";
+                return System.Text.Json.JsonSerializer.Deserialize<T>(jsonText, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            }
+            catch
+            {
+                return default;
+            }
+        }
+    }
 }
+

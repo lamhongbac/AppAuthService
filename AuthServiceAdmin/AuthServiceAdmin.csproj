@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthService.Shared\AuthService.Shared.csproj" />
+    <ProjectReference Include="..\MSA.Shared\MSA.Shared.csproj" />
+    <ProjectReference Include="..\SecurityUtility\MSA.Utils.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

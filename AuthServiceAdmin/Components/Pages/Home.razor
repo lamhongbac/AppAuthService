@@ -1,0 +1,101 @@
+@page "/"
+@rendermode InteractiveServer
+@using AuthServiceAdmin.Services
+
+<PageTitle>Dashboard | AuthService Admin</PageTitle>
+
+<div>
+    <h1 class="dashboard-title">Identity & Access Dashboard</h1>
+    <p class="dashboard-subtitle">A state-of-the-art administrative management console for decentralized authentication and authorization</p>
+</div>
+
+<div class="grid-cols-12">
+    <!-- Welcome/Overview -->
+    <div class="col-span-12 col-span-8">
+        <div class="glass-card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));">
+            <h3 class="card-title" style="color: #60a5fa">Welcome to AuthService Administrator</h3>
+            <p style="font-size: 1.05rem; line-height: 1.6; color: #cbd5e1; margin-bottom: 1.5rem">
+                This powerful console allows enterprise administrators to easily register companies, configure multi-tenant applications, map object level permissions, and manage user identity access from a single decentralized identity stack.
+            </p>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a class="btn-premium" href="companies">
+                    Manage Companies
+                </a>
+                <a class="btn-premium btn-premium-secondary" href="applications">
+                    Manage Applications
+                </a>
+            </div>
+        </div>
+
+        <div class="glass-card mt-4">
+            <h3 class="card-title">System Insights & Metrics</h3>
+            <div class="grid-cols-12">
+                <div class="col-span-12 col-span-4">
+                    <div class="glass-card" style="margin-bottom: 0; padding: 1.25rem; background: rgba(255, 255, 255, 0.02)">
+                        <div style="font-size: 2.25rem; font-weight: 700; color: #38bdf8">@companyCount</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem">Active Companies</div>
+                    </div>
+                </div>
+                <div class="col-span-12 col-span-4">
+                    <div class="glass-card" style="margin-bottom: 0; padding: 1.25rem; background: rgba(255, 255, 255, 0.02)">
+                        <div style="font-size: 2.25rem; font-weight: 700; color: #a78bfa">@appCount</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem">Applications Registered</div>
+                    </div>
+                </div>
+                <div class="col-span-12 col-span-4">
+                    <div class="glass-card" style="margin-bottom: 0; padding: 1.25rem; background: rgba(255, 255, 255, 0.02)">
+                        <div style="font-size: 2.25rem; font-weight: 700; color: #34d399">@userCount</div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem">Users Base</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Navigation Sidebar card -->
+    <div class="col-span-12 col-span-4">
+        <div class="glass-card">
+            <h3 class="card-title">Next Steps</h3>
+            <ul style="color: #cbd5e1; font-size: 0.95rem; line-height: 2; padding-left: 1.25rem;">
+                <li><strong style="color: #38bdf8">Add Your First Company</strong> to obtain an Api-Key.</li>
+                <li><strong style="color: #a78bfa">Register Applications</strong> matching corporate business domains.</li>
+                <li><strong style="color: #f472b6">Declare App Objects</strong> like views, process tasks, or data screens.</li>
+                <li><strong style="color: #34d399">Define Roles</strong> with specific object read/write permissions.</li>
+                <li><strong style="color: #fb923c">Create User Profiles</strong> and assign their application roles.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private AuthServiceApiClient ApiClient { get; set; } = default!;
+
+    private int companyCount = 0;
+    private int appCount = 0;
+    private int userCount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var compRes = await ApiClient.GetCompaniesAsync();
+        if (compRes.OK)
+        {
+            var list = compRes.GetContentAs<List<CompanyVM>>();
+            companyCount = list?.Count ?? 0;
+        }
+
+        var appRes = await ApiClient.GetApplicationsAsync();
+        if (appRes.OK)
+        {
+            var list = appRes.GetContentAs<List<ApplicationVM>>();
+            appCount = list?.Count ?? 0;
+        }
+
+        var userRes = await ApiClient.GetUsersAsync();
+        if (userRes.OK)
+        {
+            var list = userRes.GetContentAs<List<AppUserVM>>();
+            userCount = list?.Count ?? 0;
+        }
+    }
+}

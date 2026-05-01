@@ -1,0 +1,374 @@
+@page "/applications"
+@rendermode InteractiveServer
+@using AuthServiceAdmin.Services
+
+<div>
+    <h1 class="dashboard-title">Applications & Objects</h1>
+    <p class="dashboard-subtitle">Register enterprise software applications and declare business objects via API gateway</p>
+</div>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="toast-premium toast-success">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        <span>@successMessage</span>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="toast-premium toast-error">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>@errorMessage</span>
+    </div>
+}
+
+<div class="grid-cols-12">
+    <!-- Register Application -->
+    <div class="col-span-12 col-span-4">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Register Application
+            </h3>
+            <EditForm Model="regRequest" OnValidSubmit="HandleRegisterApp" FormName="app-reg">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="toast-premium toast-error" />
+
+                <div class="form-group">
+                    <label class="form-label" for="apiKey">Select Company Api-Key</label>
+                    <InputSelect id="apiKey" class="form-input" @bind-Value="selectedApiKey">
+                        <option value="">Select a Company...</option>
+                        @if (companies != null)
+                        {
+                            @foreach (var comp in companies)
+                            {
+                                <option value="@comp.RegKey">@comp.Name (@comp.RegKey)</option>
+                            }
+                        }
+                    </InputSelect>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="app-name">Application Name</label>
+                    <InputText id="app-name" class="form-input" @bind-Value="regRequest.Name" placeholder="My SaaS App" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="app-number">Application Code (Number)</label>
+                    <InputText id="app-number" class="form-input" @bind-Value="regRequest.Number" placeholder="APP001" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="app-desc">Description</label>
+                    <InputTextArea id="app-desc" class="form-input" @bind-Value="regRequest.Description" rows="2" placeholder="Brief info..." />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="app-issuer">Jwt Issuer (Optional)</label>
+                    <InputText id="app-issuer" class="form-input" @bind-Value="regRequest.JwtConfig!.Issuer" placeholder="AuthService" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="app-audience">Jwt Audience (Optional)</label>
+                    <InputText id="app-audience" class="form-input" @bind-Value="regRequest.JwtConfig!.Audience" placeholder="MSA_Apps" />
+                </div>
+
+                <button type="submit" class="btn-premium w-100" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="loading-spinner"></span>
+                    }
+                    else
+                    {
+                        <span>Register App</span>
+                    }
+                </button>
+            </EditForm>
+        </div>
+    </div>
+
+    <!-- Applications List -->
+    <div class="col-span-12 col-span-8">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                Existing Applications
+            </h3>
+            
+            <div class="table-responsive">
+                <table class="premium-table">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Issuer / Audience</th>
+                            <th>Expire</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (applications == null)
+                        {
+                            <tr>
+                                <td colspan="5">Loading applications...</td>
+                            </tr>
+                        }
+                        else if (!applications.Any())
+                        {
+                            <tr>
+                                <td colspan="5">No applications found.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var app in applications)
+                            {
+                                <tr>
+                                    <td><strong style="color: #60a5fa">@app.Number</strong></td>
+                                    <td>@app.Name</td>
+                                    <td><small>@app.Issuer / @app.Audience</small></td>
+                                    <td>@app.Expire min / @app.RefExpire min</td>
+                                    <td>
+                                        <button @onclick="() => SelectApp(app)" class="btn-premium" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                                            Select
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @if (selectedApp != null)
+        {
+            <div class="glass-card mt-4">
+                <h3 class="card-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Add App Object to '@selectedApp.Name'
+                </h3>
+
+                <div class="grid-cols-12">
+                    <div class="col-span-12 col-span-4">
+                        <div class="form-group">
+                            <label class="form-label" for="obj-name">Object Name</label>
+                            <InputText id="obj-name" class="form-input" @bind-Value="newObj.Name" placeholder="Invoice Screen" />
+                        </div>
+                    </div>
+                    <div class="col-span-12 col-span-4">
+                        <div class="form-group">
+                            <label class="form-label" for="obj-number">Object Number</label>
+                            <InputText id="obj-number" class="form-input" @bind-Value="newObj.Number" placeholder="INV001" />
+                        </div>
+                    </div>
+                    <div class="col-span-12 col-span-4">
+                        <div class="form-group">
+                            <label class="form-label" for="obj-type">Type</label>
+                            <InputSelect id="obj-type" class="form-input" @bind-Value="newObj.ObjectType">
+                                <option value="View">View</option>
+                                <option value="Process">Process</option>
+                                <option value="Data">Data</option>
+                            </InputSelect>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="obj-desc">Description</label>
+                    <InputTextArea id="obj-desc" class="form-input" @bind-Value="newObj.Description" rows="2" placeholder="Details about rights on this object..." />
+                </div>
+
+                <button type="button" @onclick="HandleAddObject" class="btn-premium">
+                    Add Object
+                </button>
+
+                <hr style="border-top: 1px solid var(--border-color); margin: 1.5rem 0;" />
+
+                <h4 class="card-title">Current App Objects</h4>
+                <div class="table-responsive">
+                    <table class="premium-table">
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (appObjects == null)
+                            {
+                                <tr><td colspan="4">Loading...</td></tr>
+                            }
+                            else if (!appObjects.Any())
+                            {
+                                <tr><td colspan="4">No objects declared for this app.</td></tr>
+                            }
+                            else
+                            {
+                                @foreach (var obj in appObjects)
+                                {
+                                    <tr>
+                                        <td><strong>@obj.Number</strong></td>
+                                        <td>@obj.Name</td>
+                                        <td><span class="badge-premium">@obj.ObjectType</span></td>
+                                        <td>@obj.Description</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Inject] private AuthServiceApiClient ApiClient { get; set; } = default!;
+
+    private string selectedApiKey = "";
+    private List<CompanyVM>? companies;
+    private List<ApplicationVM>? applications;
+    private List<AppObjectVM>? appObjects;
+    private ApplicationVM? selectedApp;
+
+    private ApplicationRegistrationRequest regRequest = new() { JwtConfig = new JwtConfigDTO { Issuer = "AuthService", Audience = "MSA_Apps", Expire = 60, RefExpire = 43200 } };
+    private AppObjectDTO newObj = new() { ObjectType = "View" };
+
+    private string successMessage = "";
+    private string errorMessage = "";
+    private bool isSaving = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCompanies();
+        await LoadApplications();
+    }
+
+    private async Task LoadCompanies()
+    {
+        var result = await ApiClient.GetCompaniesAsync();
+        if (result.OK)
+        {
+            companies = result.GetContentAs<List<CompanyVM>>() ?? new();
+        }
+        else
+        {
+            companies = new();
+        }
+    }
+
+    private async Task LoadApplications()
+    {
+        var result = await ApiClient.GetApplicationsAsync();
+        if (result.OK)
+        {
+            applications = result.GetContentAs<List<ApplicationVM>>() ?? new();
+        }
+        else
+        {
+            applications = new();
+        }
+    }
+
+    private async Task HandleRegisterApp()
+    {
+        if (string.IsNullOrEmpty(selectedApiKey))
+        {
+            errorMessage = "Please select a company to register the application.";
+            return;
+        }
+
+        isSaving = true;
+        successMessage = "";
+        errorMessage = "";
+
+        try
+        {
+            var result = await ApiClient.RegisterApplicationAsync(selectedApiKey, regRequest);
+            if (result.OK)
+            {
+                successMessage = result.Message ?? "Application registered successfully!";
+                regRequest = new() { JwtConfig = new JwtConfigDTO { Issuer = "AuthService", Audience = "MSA_Apps", Expire = 60, RefExpire = 43200 } };
+                await LoadApplications();
+            }
+            else
+            {
+                errorMessage = result.Message ?? "Failed to register application.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private async Task SelectApp(ApplicationVM app)
+    {
+        selectedApp = app;
+        await LoadObjects(app.Id);
+    }
+
+    private async Task LoadObjects(int appId)
+    {
+        var result = await ApiClient.GetObjectsAsync(appId);
+        if (result.OK)
+        {
+            appObjects = result.GetContentAs<List<AppObjectVM>>() ?? new();
+        }
+        else
+        {
+            appObjects = new();
+        }
+    }
+
+    private async Task HandleAddObject()
+    {
+        if (selectedApp == null || string.IsNullOrEmpty(selectedApiKey))
+        {
+            errorMessage = "Please select a company and application first.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(newObj.Name) || string.IsNullOrEmpty(newObj.Number))
+        {
+            errorMessage = "Name and Number are required.";
+            return;
+        }
+
+        successMessage = "";
+        errorMessage = "";
+
+        try
+        {
+            var req = new AddAppObjectsRequest
+            {
+                AppNumber = selectedApp.Number,
+                Objects = new List<AppObjectDTO> { newObj }
+            };
+
+            var result = await ApiClient.AddObjectsAsync(selectedApiKey, req);
+            if (result.OK)
+            {
+                successMessage = "App Object added successfully!";
+                newObj = new() { ObjectType = "View" };
+                await LoadObjects(selectedApp.Id);
+            }
+            else
+            {
+                errorMessage = result.Message ?? "Failed to add object.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+    }
+}

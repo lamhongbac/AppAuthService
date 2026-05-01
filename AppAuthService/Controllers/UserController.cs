@@ -1,9 +1,11 @@
 using AppAuth.BLL.Interfaces;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
+using AuthService.DAL.Repos;
 using MSA.Shared;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AppAuthService.Controllers
 {
@@ -12,11 +14,13 @@ namespace AppAuthService.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly IAppUserRepository _userRepository;
 
-        public UserController(IUserService userService, IApiKeyService apiKeyService)
+        public UserController(IUserService userService, IApiKeyService apiKeyService, IAppUserRepository userRepository)
             : base(apiKeyService)
         {
             _userService = userService;
+            _userRepository = userRepository;
         }
 
         [HttpPost("create")]
@@ -65,6 +69,13 @@ namespace AppAuthService.Controllers
             }
 
             return BadRequest(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<BOProcessResult>> Get()
+        {
+            var users = await _userRepository.GetAllAsync();
+            return Ok(BOProcessResult.Success(users.ToList()));
         }
     }
 }

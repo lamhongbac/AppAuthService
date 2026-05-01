@@ -1,0 +1,345 @@
+@page "/roles"
+@rendermode InteractiveServer
+@using AuthServiceAdmin.Services
+
+<div>
+    <h1 class="dashboard-title">Roles & Rights Management</h1>
+    <p class="dashboard-subtitle">Define application permissions and role rights via API gateway</p>
+</div>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="toast-premium toast-success">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        <span>@successMessage</span>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="toast-premium toast-error">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>@errorMessage</span>
+    </div>
+}
+
+<div class="grid-cols-12">
+    <!-- Define Role Rights -->
+    <div class="col-span-12 col-span-5">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                Define Application Role
+            </h3>
+
+            <div class="form-group">
+                <label class="form-label">Select Company</label>
+                <InputSelect class="form-input" @bind-Value="selectedApiKey" @bind-Value:after="OnCompanyChanged">
+                    <option value="">Select a Company...</option>
+                    @if (companies != null)
+                    {
+                        @foreach (var comp in companies)
+                        {
+                            <option value="@comp.RegKey">@comp.Name (@comp.RegKey)</option>
+                        }
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Select Application</label>
+                <InputSelect class="form-input" @bind-Value="roleRequest.AppNumber" @bind-Value:after="OnAppChanged">
+                    <option value="">Select an Application...</option>
+                    @if (filteredApps != null)
+                    {
+                        @foreach (var app in filteredApps)
+                        {
+                            <option value="@app.Number">@app.Name (@app.Number)</option>
+                        }
+                    }
+                </InputSelect>
+            </div>
+
+            <hr style="border-top: 1px solid var(--border-color); margin: 1.5rem 0;" />
+
+            <div class="form-group">
+                <label class="form-label">Role Name</label>
+                <InputText class="form-input" @bind-Value="roleRequest.Name" placeholder="Admin, Editor..." />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Role Number</label>
+                <InputText class="form-input" @bind-Value="roleRequest.Number" placeholder="ADM01" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <InputTextArea class="form-input" @bind-Value="roleRequest.Description" rows="2" placeholder="Permission details..." />
+            </div>
+
+            <button @onclick="HandleCreateRole" class="btn-premium w-100" disabled="@isSaving">
+                @if (isSaving)
+                {
+                    <span class="loading-spinner"></span>
+                }
+                else
+                {
+                    <span>Create Role with Rights</span>
+                }
+            </button>
+        </div>
+    </div>
+
+    <!-- Mapping Rights directly -->
+    <div class="col-span-12 col-span-7">
+        <div class="glass-card">
+            <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                Map Rights to Role Objects
+            </h3>
+
+            @if (appObjects == null || !appObjects.Any())
+            {
+                <p style="color: var(--text-muted); font-style: italic;">No App Objects declared. Declare App Objects first to define permissions here.</p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="premium-table">
+                        <thead>
+                            <tr>
+                                <th>Object Number / Name</th>
+                                <th>List</th>
+                                <th>Create</th>
+                                <th>Read</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var obj in appObjects)
+                            {
+                                var right = GetOrCreateRight(obj.Number);
+                                <tr>
+                                    <td>
+                                        <strong>@obj.Number</strong><br />
+                                        <small style="color: var(--text-muted)">@obj.Name (@obj.ObjectType)</small>
+                                    </td>
+                                    <td><input type="checkbox" @bind="right.CanList" /></td>
+                                    <td><input type="checkbox" @bind="right.CanCreate" /></td>
+                                    <td><input type="checkbox" @bind="right.CanRead" /></td>
+                                    <td><input type="checkbox" @bind="right.CanUpdate" /></td>
+                                    <td><input type="checkbox" @bind="right.CanDelete" /></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        
+        <div class="glass-card mt-4">
+            <h3 class="card-title">Existing App Roles</h3>
+            <div class="table-responsive">
+                <table class="premium-table">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Created On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (roles == null)
+                        {
+                            <tr><td colspan="4">Loading...</td></tr>
+                        }
+                        else if (!roles.Any())
+                        {
+                            <tr><td colspan="4">No roles created yet for the selected app.</td></tr>
+                        }
+                        else
+                        {
+                            @foreach (var r in roles)
+                            {
+                                <tr>
+                                    <td><strong>@r.Number</strong></td>
+                                    <td>@r.Name</td>
+                                    <td>@r.Description</td>
+                                    <td>@r.CreatedOn.ToLocalTime().ToString("g")</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private AuthServiceApiClient ApiClient { get; set; } = default!;
+
+    private string selectedApiKey = "";
+    private List<CompanyVM>? companies;
+    private List<ApplicationVM>? allApps;
+    private List<ApplicationVM>? filteredApps;
+    private List<AppObjectVM>? appObjects;
+    private List<AppRoleVM>? roles;
+
+    private CreateAppRoleRequest roleRequest = new();
+
+    private string successMessage = "";
+    private string errorMessage = "";
+    private bool isSaving = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCompanies();
+        await LoadApplications();
+    }
+
+    private async Task LoadCompanies()
+    {
+        var result = await ApiClient.GetCompaniesAsync();
+        if (result.OK)
+        {
+            companies = result.GetContentAs<List<CompanyVM>>() ?? new();
+        }
+        else
+        {
+            companies = new();
+        }
+    }
+
+    private async Task LoadApplications()
+    {
+        var result = await ApiClient.GetApplicationsAsync();
+        if (result.OK)
+        {
+            allApps = result.GetContentAs<List<ApplicationVM>>() ?? new();
+        }
+        else
+        {
+            allApps = new();
+        }
+    }
+
+    private async Task OnCompanyChanged()
+    {
+        roleRequest.AppNumber = "";
+        roleRequest.Rights.Clear();
+        appObjects = null;
+        roles = null;
+
+        if (string.IsNullOrEmpty(selectedApiKey))
+        {
+            filteredApps = null;
+            return;
+        }
+
+        var company = companies?.FirstOrDefault(c => c.RegKey == selectedApiKey);
+        if (company != null)
+        {
+            filteredApps = allApps?.Where(a => a.CompanyId == company.Id).ToList();
+        }
+    }
+
+    private async Task OnAppChanged()
+    {
+        roleRequest.Rights.Clear();
+        appObjects = null;
+        roles = null;
+
+        if (string.IsNullOrEmpty(roleRequest.AppNumber))
+        {
+            return;
+        }
+
+        var app = filteredApps?.FirstOrDefault(a => a.Number == roleRequest.AppNumber);
+        if (app != null)
+        {
+            // 1. Get objects
+            var objResult = await ApiClient.GetObjectsAsync(app.Id);
+            if (objResult.OK)
+            {
+                appObjects = objResult.GetContentAs<List<AppObjectVM>>() ?? new();
+            }
+            else
+            {
+                appObjects = new();
+            }
+
+            // 2. Get roles
+            var rolesResult = await ApiClient.GetRolesByAppAsync(app.Id);
+            if (rolesResult.OK)
+            {
+                roles = rolesResult.GetContentAs<List<AppRoleVM>>() ?? new();
+            }
+            else
+            {
+                roles = new();
+            }
+        }
+    }
+
+    private RoleRightDTO GetOrCreateRight(string objNumber)
+    {
+        var match = roleRequest.Rights.FirstOrDefault(r => r.AppObjectNumber == objNumber);
+        if (match == null)
+        {
+            match = new RoleRightDTO { AppObjectNumber = objNumber };
+            roleRequest.Rights.Add(match);
+        }
+        return match;
+    }
+
+    private async Task HandleCreateRole()
+    {
+        if (string.IsNullOrEmpty(selectedApiKey))
+        {
+            errorMessage = "Please select a company.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(roleRequest.AppNumber))
+        {
+            errorMessage = "Please select an application.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(roleRequest.Name) || string.IsNullOrEmpty(roleRequest.Number))
+        {
+            errorMessage = "Role Name and Number are required.";
+            return;
+        }
+
+        isSaving = true;
+        successMessage = "";
+        errorMessage = "";
+
+        try
+        {
+            var result = await ApiClient.CreateRoleAsync(selectedApiKey, roleRequest);
+            if (result.OK)
+            {
+                successMessage = result.Message ?? "Role created with rights successfully!";
+                roleRequest = new() { AppNumber = roleRequest.AppNumber };
+                await OnAppChanged();
+            }
+            else
+            {
+                errorMessage = result.Message ?? "Failed to create role.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+}
