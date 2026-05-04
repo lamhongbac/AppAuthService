@@ -1,7 +1,7 @@
 using AppAuth.BLL.Interfaces;
 using AuthService.DAL.Models;
 using AuthService.DAL.Repos;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using System.Linq;
 using System.Threading.Tasks;
 

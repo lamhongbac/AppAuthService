@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using AuthService.Shared.RequestResponse;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 
 namespace AuthServiceAdmin.Services
 {

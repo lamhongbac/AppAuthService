@@ -1,4 +1,4 @@
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using AuthService.Shared.RequestResponse;
 using System.Threading.Tasks;
 

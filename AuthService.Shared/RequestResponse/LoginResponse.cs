@@ -1,4 +1,4 @@
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

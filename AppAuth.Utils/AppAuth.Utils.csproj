@@ -13,7 +13,12 @@
   <ItemGroup>
     <ProjectReference Include="..\AuthService.DAL\AuthService.DAL.csproj" />
     <ProjectReference Include="..\AuthService.Shared\AuthService.Shared.csproj" />
-    <ProjectReference Include="..\SecurityUtility\MSA.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MSA.Shared.Utils">
+      <HintPath>..\..\..\GIT PROJECT\MSA.Shared\MSA.Shared.Utils\bin\Debug\netstandard2.1\MSA.Shared.Utils.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

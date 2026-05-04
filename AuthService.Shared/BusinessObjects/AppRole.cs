@@ -1,4 +1,4 @@
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 
 namespace AuthService.Shared.BusinessObjects
 {

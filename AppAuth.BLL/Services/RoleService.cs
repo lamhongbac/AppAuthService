@@ -3,7 +3,7 @@ using AuthService.DAL.Models;
 using AuthService.DAL.Repos;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

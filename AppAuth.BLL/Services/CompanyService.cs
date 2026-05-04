@@ -2,7 +2,7 @@ using AppAuth.BLL.Interfaces;
 using AppAuth.Utils;
 using AuthService.DAL.Models;
 using AuthService.DAL.Repos;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
 using Microsoft.Extensions.Configuration;

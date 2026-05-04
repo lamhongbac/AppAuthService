@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MSA.Shared\MSA.Shared.csproj" />
+    <Reference Include="MSA.Shared.DataTypes">
+      <HintPath>..\..\..\GIT PROJECT\MSA.Shared\MSA.Shared.Utils\bin\Debug\netstandard2.1\MSA.Shared.DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="MSA.Shared.Utils">
+      <HintPath>..\..\..\GIT PROJECT\MSA.Shared\MSA.Shared.Utils\bin\Debug\netstandard2.1\MSA.Shared.Utils.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

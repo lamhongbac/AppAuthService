@@ -5,7 +5,7 @@ using AuthService.DAL.Repos;
 using AuthService.Shared.RequestResponse;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using MSAUtility;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;

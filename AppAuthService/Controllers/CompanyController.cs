@@ -1,5 +1,5 @@
 using AppAuth.BLL.Interfaces;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using AuthService.Shared;
 using AuthService.Shared.RequestResponse;
 using AuthService.DAL.Repos;

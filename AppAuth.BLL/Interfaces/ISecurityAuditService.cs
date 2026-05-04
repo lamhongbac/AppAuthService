@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 
 namespace AppAuth.BLL.Interfaces
 {

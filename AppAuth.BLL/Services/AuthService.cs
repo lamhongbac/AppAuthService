@@ -1,17 +1,12 @@
 using AppAuth.BLL.Interfaces;
 using AppAuth.Utils;
-using AuthService.DAL.Models;
 using AuthService.DAL.Repos;
 using AuthService.Shared;
 using AuthService.Shared.BusinessObjects;
 using AuthService.Shared.RequestResponse;
-using MSA.Shared;
-using MSAUtility;
+using MSA.Shared.DataTypes;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MSAUtility;
 
 namespace AppAuth.BLL.Services
 {

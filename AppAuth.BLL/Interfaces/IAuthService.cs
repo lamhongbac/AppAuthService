@@ -1,5 +1,5 @@
 using AuthService.Shared.RequestResponse;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using System.Threading.Tasks;
 
 namespace AppAuth.BLL.Interfaces

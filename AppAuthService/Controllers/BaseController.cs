@@ -1,7 +1,7 @@
 using AppAuth.BLL.Interfaces;
 using AuthService.DAL.Models;
 using AuthService.Shared;
-using MSA.Shared;
+using MSA.Shared.DataTypes;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
