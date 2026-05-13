@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+[data-color-mode*='light'], [data-color-mode*='light'] body, .markdown-style[theme*='light'] { --color-prettylights-syntax-comment: #6e7781; --color-prettylights-syntax-constant: #0550ae; --color-prettylights-syntax-entity: #8250df; --color-prettylights-syntax-storage-modifier-import: #24292f; --color-prettylights-syntax-entity-tag: #116329; --color-prettylights-syntax-keyword: #cf222e; --color-prettylights-syntax-string: #0a3069; --color-prettylights-syntax-variable: #953800; --color-prettylights-syntax-brackethighlighter-unmatched: #82071e; --color-prettylights-syntax-invalid-illegal-text: #f6f8fa; --color-prettylights-syntax-invalid-illegal-bg: #82071e; --color-prettylights-syntax-carriage-return-text: #f6f8fa; --color-prettylights-syntax-carriage-return-bg: #cf222e; --color-prettylights-syntax-string-regexp: #116329; --color-prettylights-syntax-markup-list: #3b2300; --color-prettylights-syntax-markup-heading: #0550ae; --color-prettylights-syntax-markup-italic: #24292f; --color-prettylights-syntax-markup-bold: #24292f; --color-prettylights-syntax-markup-deleted-text: #82071e; --color-prettylights-syntax-markup-deleted-bg: #FFEBE9; --color-prettylights-syntax-markup-inserted-text: #116329; --color-prettylights-syntax-markup-inserted-bg: #dafbe1; --color-prettylights-syntax-markup-changed-text: #953800; --color-prettylights-syntax-markup-changed-bg: #ffd8b5; --color-prettylights-syntax-markup-ignored-text: #eaeef2; --color-prettylights-syntax-markup-ignored-bg: #0550ae; --color-prettylights-syntax-meta-diff-range: #8250df; --color-prettylights-syntax-brackethighlighter-angle: #57606a; --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f; --color-prettylights-syntax-constant-other-reference-link: #0a3069; --color-fg-default: #24292f; --color-fg-muted: #57606a; --color-fg-subtle: #6e7781; --color-canvas-default: #ffffff; --color-canvas-subtle: #f6f8fa; --color-border-default: #d0d7de; --color-border-muted: hsla(210,18%,87%,1); --color-neutral-muted: rgba(175,184,193,0.2); --color-accent-fg: #0969da; --color-accent-emphasis: #0969da; --color-attention-subtle: #fff8c5; --color-danger-fg: #cf222e; }
+[data-color-mode*='dark'], [data-color-mode*='dark'] body, .markdown-style[theme*='dark'] { --color-prettylights-syntax-comment: #8b949e; --color-prettylights-syntax-constant: #79c0ff; --color-prettylights-syntax-entity: #d2a8ff; --color-prettylights-syntax-storage-modifier-import: #c9d1d9; --color-prettylights-syntax-entity-tag: #7ee787; --color-prettylights-syntax-keyword: #ff7b72; --color-prettylights-syntax-string: #a5d6ff; --color-prettylights-syntax-variable: #ffa657; --color-prettylights-syntax-brackethighlighter-unmatched: #f85149; --color-prettylights-syntax-invalid-illegal-text: #f0f6fc; --color-prettylights-syntax-invalid-illegal-bg: #8e1519; --color-prettylights-syntax-carriage-return-text: #f0f6fc; --color-prettylights-syntax-carriage-return-bg: #b62324; --color-prettylights-syntax-string-regexp: #7ee787; --color-prettylights-syntax-markup-list: #f2cc60; --color-prettylights-syntax-markup-heading: #1f6feb; --color-prettylights-syntax-markup-italic: #c9d1d9; --color-prettylights-syntax-markup-bold: #c9d1d9; --color-prettylights-syntax-markup-deleted-text: #ffdcd7; --color-prettylights-syntax-markup-deleted-bg: #67060c; --color-prettylights-syntax-markup-inserted-text: #aff5b4; --color-prettylights-syntax-markup-inserted-bg: #033a16; --color-prettylights-syntax-markup-changed-text: #ffdfb6; --color-prettylights-syntax-markup-changed-bg: #5a1e02; --color-prettylights-syntax-markup-ignored-text: #c9d1d9; --color-prettylights-syntax-markup-ignored-bg: #1158c7; --color-prettylights-syntax-meta-diff-range: #d2a8ff; --color-prettylights-syntax-brackethighlighter-angle: #8b949e; --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58; --color-prettylights-syntax-constant-other-reference-link: #a5d6ff; --color-fg-default: #c9d1d9; --color-fg-muted: #8b949e; --color-fg-subtle: #484f58; --color-canvas-default: #0d1117; --color-canvas-subtle: #161b22; --color-border-default: #30363d; --color-border-muted: #21262d; --color-neutral-muted: rgba(110,118,129,0.4); --color-accent-fg: #58a6ff; --color-accent-emphasis: #1f6feb; --color-attention-subtle: rgba(187,128,9,0.15); --color-danger-fg: #f85149; }
+.markdown-style { display: block; -webkit-text-size-adjust: 100%; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: var(--color-fg-default); background-color: var(--color-canvas-default); } .markdown-style details, .markdown-style figcaption, .markdown-style figure { display: block; } .markdown-style summary { display: list-item; } .markdown-style [hidden] { display: none !important; } .markdown-style a { background-color: transparent; color: var(--color-accent-fg); text-decoration: none; } .markdown-style a:active, .markdown-style a:hover { outline-width: 0; } .markdown-style abbr[title] { border-bottom: none; text-decoration: underline dotted; } .markdown-style b, .markdown-style strong { font-weight: 600; } .markdown-style dfn { font-style: italic; } .markdown-style h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid var(--color-border-muted); } .markdown-style mark { background-color: var(--color-attention-subtle); color: var(--color-text-primary); } .markdown-style small { font-size: 90%; } .markdown-style sub, .markdown-style sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } .markdown-style sub { bottom: -0.25em; } .markdown-style sup { top: -0.5em; } .markdown-style img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: var(--color-canvas-default); } .markdown-style code, .markdown-style kbd, .markdown-style pre, .markdown-style samp { font-family: monospace,monospace; font-size: 1em; } .markdown-style figure { margin: 1em 40px; } .markdown-style hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid var(--color-border-muted); height: .25em; padding: 0; margin: 24px 0; background-color: var(--color-border-default); border: 0; } .markdown-style input { font: inherit; margin: 0; overflow: visible; font-family: inherit; font-size: inherit; line-height: inherit; } .markdown-style [type=button], .markdown-style [type=reset], .markdown-style [type=submit] { -webkit-appearance: button; } .markdown-style [type=button]::-moz-focus-inner, .markdown-style [type=reset]::-moz-focus-inner, .markdown-style [type=submit]::-moz-focus-inner { border-style: none; padding: 0; } .markdown-style [type=button]:-moz-focusring, .markdown-style [type=reset]:-moz-focusring, .markdown-style [type=submit]:-moz-focusring { outline: 1px dotted ButtonText; } .markdown-style [type=checkbox], .markdown-style [type=radio] { box-sizing: border-box; padding: 0; } .markdown-style [type=number]::-webkit-inner-spin-button, .markdown-style [type=number]::-webkit-outer-spin-button { height: auto; } .markdown-style [type=search] { -webkit-appearance: textfield; outline-offset: -2px; } .markdown-style [type=search]::-webkit-search-cancel-button, .markdown-style [type=search]::-webkit-search-decoration { -webkit-appearance: none; } .markdown-style ::-webkit-input-placeholder { color: inherit; opacity: .54; } .markdown-style ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; } .markdown-style a:hover { text-decoration: underline; } .markdown-style hr::before { display: table; content: ""; } .markdown-style hr::after { display: table; clear: both; content: ""; } .markdown-style table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; } .markdown-style td, .markdown-style th { padding: 0; } .markdown-style details summary { cursor: pointer; } .markdown-style details:not([open])>*:not(summary) { display: none !important; } .markdown-style kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace,Helvetica,Arial,sans-serif; line-height: 10px; color: var(--color-fg-default); vertical-align: middle; background-color: var(--color-canvas-subtle); border: solid 1px var(--color-neutral-muted); border-bottom-color: var(--color-neutral-muted); border-radius: 6px; box-shadow: inset 0 -1px 0 var(--color-neutral-muted); } .markdown-style h1, .markdown-style h2, .markdown-style h3, .markdown-style h4, .markdown-style h5, .markdown-style h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; } .markdown-style h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid var(--color-border-muted); } .markdown-style h3 { font-weight: 600; font-size: 1.25em; } .markdown-style h4 { font-weight: 600; font-size: 1em; } .markdown-style h5 { font-weight: 600; font-size: .875em; } .markdown-style h6 { font-weight: 600; font-size: .85em; color: var(--color-fg-muted); } .markdown-style p { margin-top: 0; margin-bottom: 10px; } .markdown-style blockquote { margin: 0; padding: 0 1em; color: var(--color-fg-muted); border-left: .25em solid var(--color-border-default); } .markdown-style ul, .markdown-style ol { margin-top: 0; margin-bottom: 0; padding-left: 2em; } .markdown-style ol ol, .markdown-style ul ol { list-style-type: lower-roman; } .markdown-style ul ul ol, .markdown-style ul ol ol, .markdown-style ol ul ol, .markdown-style ol ol ol { list-style-type: lower-alpha; } .markdown-style dd { margin-left: 0; } .markdown-style tt, .markdown-style code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace,Helvetica,Arial,sans-serif; font-size: 12px; } .markdown-style pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace,Helvetica,Arial,sans-serif; font-size: 12px; word-wrap: normal; } .markdown-style .octicon { display: inline-block; overflow: visible !important; vertical-align: text-bottom; fill: currentColor; } .markdown-style ::placeholder { color: var(--color-fg-subtle); opacity: 1; } .markdown-style input::-webkit-outer-spin-button, .markdown-style input::-webkit-inner-spin-button { margin: 0; -webkit-appearance: none; appearance: none; }
+.markdown-style .token.comment, .markdown-style .token.prolog, .markdown-style .token.doctype, .markdown-style .token.cdata { color: var(--color-prettylights-syntax-comment); } .markdown-style .token.namespace { opacity: 0.7; } .markdown-style .token.tag, .markdown-style .token.selector, .markdown-style .token.constant, .markdown-style .token.symbol, .markdown-style .token.deleted { color: var(--color-prettylights-syntax-entity-tag); } .markdown-style .token.maybe-class-name { color: var(--color-prettylights-syntax-variable); } .markdown-style .token.property-access, .markdown-style .token.operator, .markdown-style .token.boolean, .markdown-style .token.number, .markdown-style .token.selector .markdown-style .token.class, .markdown-style .token.attr-name, .markdown-style .token.string, .markdown-style .token.char, .markdown-style .token.builtin { color: var(--color-prettylights-syntax-constant); } .markdown-style .token.deleted { color: var(--color-prettylights-syntax-markup-deleted-text); } .markdown-style .token.property { color: var(--color-prettylights-syntax-constant); } .markdown-style .token.punctuation { color: var(--color-prettylights-syntax-markup-bold); } .markdown-style .token.function { color: var(--color-prettylights-syntax-entity); } .markdown-style .code-line .token.deleted { background-color: var(--color-prettylights-syntax-markup-deleted-bg); } .markdown-style .token.inserted { color: var(--color-prettylights-syntax-markup-inserted-text); } .markdown-style .code-line .token.inserted { background-color: var(--color-prettylights-syntax-markup-inserted-bg); } .markdown-style .token.variable { color: var(--color-prettylights-syntax-constant); } .markdown-style .token.entity, .markdown-style .token.url, .language-css .markdown-style .token.string, .style .markdown-style .token.string { color: var(--color-prettylights-syntax-string); } .markdown-style .token.color, .markdown-style .token.atrule, .markdown-style .token.attr-value, .markdown-style .token.function, .markdown-style .token.class-name { color: var(--color-prettylights-syntax-string); } .markdown-style .token.rule, .markdown-style .token.regex, .markdown-style .token.important, .markdown-style .token.keyword { color: var(--color-prettylights-syntax-keyword); } .markdown-style .token.coord { color: var(--color-prettylights-syntax-meta-diff-range); } .markdown-style .token.important, .markdown-style .token.bold { font-weight: bold; } .markdown-style .token.italic { font-style: italic; } .markdown-style .token.entity { cursor: help; }
+.markdown-style [data-catalyst] { display: block; } .markdown-style g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em; } .markdown-style g-emoji img { width: 1em; height: 1em; } .markdown-style::before { display: table; content: ""; } .markdown-style::after { display: table; clear: both; content: ""; } .markdown-style>*:first-child { margin-top: 0 !important; } .markdown-style>*:last-child { margin-bottom: 0 !important; } .markdown-style a:not([href]) { color: inherit; text-decoration: none; } .markdown-style .absent { color: var(--color-danger-fg); } .markdown-style a.anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1; } .markdown-style a.anchor:focus { outline: none; } .markdown-style p, .markdown-style blockquote, .markdown-style ul, .markdown-style ol, .markdown-style dl, .markdown-style table, .markdown-style pre, .markdown-style details { margin-top: 0; margin-bottom: 16px; } .markdown-style blockquote>:first-child { margin-top: 0; } .markdown-style blockquote>:last-child { margin-bottom: 0; } .markdown-style sup>a::before { content: "["; } .markdown-style sup>a::after { content: "]"; }
+.markdown-style .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block; } .markdown-style .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer; } .markdown-style .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important; } .markdown-style details.octicon-video:not([open])>*:not(summary) { display: none !important; } .markdown-style details.octicon-video:not([open]) > summary { border-bottom: 0 !important; } .markdown-style h1 .octicon-link, .markdown-style h2 .octicon-link, .markdown-style h3 .octicon-link, .markdown-style h4 .octicon-link, .markdown-style h5 .octicon-link, .markdown-style h6 .octicon-link { color: var(--color-fg-default); vertical-align: middle; visibility: hidden; } .markdown-style h1:hover .anchor, .markdown-style h2:hover .anchor, .markdown-style h3:hover .anchor, .markdown-style h4:hover .anchor, .markdown-style h5:hover .anchor, .markdown-style h6:hover .anchor { text-decoration: none; } .markdown-style h1:hover .anchor .octicon-link, .markdown-style h2:hover .anchor .octicon-link, .markdown-style h3:hover .anchor .octicon-link, .markdown-style h4:hover .anchor .octicon-link, .markdown-style h5:hover .anchor .octicon-link, .markdown-style h6:hover .anchor .octicon-link { visibility: visible; } .markdown-style h1 tt, .markdown-style h1 code, .markdown-style h2 tt, .markdown-style h2 code, .markdown-style h3 tt, .markdown-style h3 code, .markdown-style h4 tt, .markdown-style h4 code, .markdown-style h5 tt, .markdown-style h5 code, .markdown-style h6 tt, .markdown-style h6 code { padding: 0 .2em; font-size: inherit; } .markdown-style ul.no-list, .markdown-style ol.no-list { padding: 0; list-style-type: none; } .markdown-style ol[type="1"] { list-style-type: decimal; } .markdown-style ol[type=a] { list-style-type: lower-alpha; } .markdown-style ol[type=i] { list-style-type: lower-roman; } .markdown-style div>ol:not([type]) { list-style-type: decimal; } .markdown-style ul ul, .markdown-style ul ol, .markdown-style ol ol, .markdown-style ol ul { margin-top: 0; margin-bottom: 0; } .markdown-style li>p { margin-top: 16px; } .markdown-style li+li { margin-top: .25em; } .markdown-style dl { padding: 0; } .markdown-style dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600; } .markdown-style dl dd { padding: 0 16px; margin-bottom: 16px; } .markdown-style table th { font-weight: 600; } .markdown-style table th, .markdown-style table td { padding: 6px 13px; border: 1px solid var(--color-border-default); } .markdown-style table tr { background-color: var(--color-canvas-default); border-top: 1px solid var(--color-border-muted); } .markdown-style table tr:nth-child(2n) { background-color: var(--color-canvas-subtle); } .markdown-style table img { background-color: transparent; vertical-align: middle; } .markdown-style img[align=right] { padding-left: 20px; } .markdown-style img[align=left] { padding-right: 20px; } .markdown-style .emoji { max-width: none; vertical-align: text-top; background-color: transparent; } .markdown-style span.frame { display: block; overflow: hidden; } .markdown-style span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid var(--color-border-default); } .markdown-style span.frame span img { display: block; float: left; } .markdown-style span.frame span span { display: block; padding: 5px 0 0; clear: both; color: var(--color-fg-default); } .markdown-style span.align-center { display: block; overflow: hidden; clear: both; } .markdown-style span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center; } .markdown-style span.align-center span img { margin: 0 auto; text-align: center; } .markdown-style span.align-right { display: block; overflow: hidden; clear: both; } .markdown-style span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right; } .markdown-style span.align-right span img { margin: 0; text-align: right; } .markdown-style span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; } .markdown-style span.float-left span { margin: 13px 0 0; } .markdown-style span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; } .markdown-style span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right; } .markdown-style code, .markdown-style tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: var(--color-neutral-muted); border-radius: 6px; } .markdown-style code br, .markdown-style tt br { display: none; } .markdown-style del code { text-decoration: inherit; } .markdown-style pre code { font-size: 100%; } .markdown-style pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0; } .markdown-style pre { position: relative; font-size: 85%; line-height: 1.45; background-color: var(--color-canvas-subtle); border-radius: 6px; } .markdown-style pre code, .markdown-style pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } .markdown-style pre > code { padding: 16px; overflow: auto; display: block; } .markdown-style .csv-data td, .markdown-style .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap; } .markdown-style .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: var(--color-canvas-default); border: 0; } .markdown-style .csv-data tr { border-top: 0; } .markdown-style .csv-data th { font-weight: 600; background: var(--color-canvas-subtle); border-top: 0; } .markdown-style .footnotes { font-size: 12px; color: var(--color-fg-muted); border-top: 1px solid var(--color-border-default); } .markdown-style .footnotes ol { padding-left: 16px; } .markdown-style .footnotes li { position: relative; } .markdown-style .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid var(--color-accent-emphasis); border-radius: 6px; } .markdown-style .footnotes li:target { color: var(--color-fg-default); } .markdown-style .footnotes .data-footnote-backref g-emoji { font-family: monospace; } .markdown-style .task-list-item { list-style-type: none; } .markdown-style .task-list-item label { font-weight: 400; } .markdown-style .task-list-item.enabled label { cursor: pointer; } .markdown-style .task-list-item+.task-list-item { margin-top: 3px; } .markdown-style .task-list-item .handle { display: none; } .markdown-style .task-list-item-checkbox, .markdown-style input[type="checkbox"] { margin: 0 .2em .25em -1.6em; vertical-align: middle; } .markdown-style .contains-task-list:dir(rtl) .task-list-item-checkbox, .markdown-style .contains-task-list:dir(rtl) input[type="checkbox"] { margin: 0 -1.6em .25em .2em; } .markdown-style ::-webkit-calendar-picker-indicator { filter: invert(50%); }
+
+/** copy button style **/
+.markdown-style pre .copied {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  color: #a5afbb;
+  top: 6px;
+  right: 6px;
+  border-radius: 5px;
+  background: #82828226;
+  padding: 6px;
+  font-size: 12px;
+  transition: all .3s;
+}
+.markdown-style pre .copied:not(.active) { visibility: hidden; }
+.markdown-style pre:hover .copied { visibility: visible; }
+.markdown-style pre:hover .copied:hover { background: #4caf50; color: #fff; }
+.markdown-style pre:hover .copied:active,
+.markdown-style pre .copied.active { background: #2e9b33; color: #fff; }
+.markdown-style pre .copied svg { position: relative; }
+.markdown-style pre .copied .octicon-copy { display: block; }
+.markdown-style pre .copied .octicon-check { display: none; }
+.markdown-style pre .active .octicon-copy { display: none; }
+.markdown-style pre .active .octicon-check { display: block; }
+
+/** octicon style **/
+.markdown-style h1:hover a.anchor .octicon-link:before,
+.markdown-style h2:hover a.anchor .octicon-link:before,
+.markdown-style h3:hover a.anchor .octicon-link:before,
+.markdown-style h4:hover a.anchor .octicon-link:before,
+.markdown-style h5:hover a.anchor .octicon-link:before,
+.markdown-style h6:hover a.anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+
+.markdown-style ::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+  height: 8px;
+}
+
+.markdown-style ::-webkit-scrollbar-thumb {
+  background: var(--color-fg-muted);
+  border-radius: 10px;
+}
+</style>
+  </head>
+  <body><dark-mode style="position: fixed; top: 8px; left: 10px; z-index: 999;" dark="Dark" light="Light" permanent="true"></dark-mode><script>const t=document;const e="_dark_mode_theme_";const s="permanent";const o="colorschemechange";const i="permanentcolorscheme";const h="light";const r="dark";const n=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){const t=this.getAttribute(e);return t===null?"":t},set(t){this.setAttribute(e,t)}})};const c=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){return this.hasAttribute(e)},set(t){if(t){this.setAttribute(e,"")}else{this.removeAttribute(e)}}})};class a extends HTMLElement{static get observedAttributes(){return["mode",h,r,s]}LOCAL_NANE=e;constructor(){super();this.t()}connectedCallback(){n(this,"mode");n(this,r);n(this,h);c(this,s);const a=localStorage.getItem(e);if(a&&[h,r].includes(a)){this.mode=a;this.permanent=true}if(this.permanent&&!a){localStorage.setItem(e,this.mode)}const l=[h,r].includes(a);if(this.permanent&&a){this.o()}else{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){this.mode=r;this.o()}if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches){this.mode=h;this.o()}}if(!this.permanent&&!l){window.matchMedia("(prefers-color-scheme: light)").onchange=t=>{this.mode=t.matches?h:r;this.o()};window.matchMedia("(prefers-color-scheme: dark)").onchange=t=>{this.mode=t.matches?r:h;this.o()}}const d=new MutationObserver(((s,h)=>{this.mode=t.documentElement.dataset.colorMode;if(this.permanent&&l){localStorage.setItem(e,this.mode);this.i(i,{permanent:this.permanent})}this.h();this.i(o,{colorScheme:this.mode})}));d.observe(t.documentElement,{attributes:true});this.i(o,{colorScheme:this.mode});this.h()}attributeChangedCallback(t,s,o){if(t==="mode"&&s!==o&&[h,r].includes(o)){const t=localStorage.getItem(e);if(this.mode===t){this.mode=o;this.h();this.o()}else if(this.mode&&this.mode!==t){this.h();this.o()}}else if((t===h||t===r)&&s!==o){this.h()}if(t==="permanent"&&typeof this.permanent==="boolean"){this.permanent?localStorage.setItem(e,this.mode):localStorage.removeItem(e)}}o(){t.documentElement.setAttribute("data-color-mode",this.mode)}h(){this.icon.textContent=this.mode===h?"🌒":"🌞";this.text.textContent=this.mode===h?this.getAttribute(r):this.getAttribute(h);if(!this.text.textContent&&this.text.parentElement&&this.text){this.text.parentElement.removeChild(this.text)}}t(){var s=this.attachShadow({mode:"open"});this.label=t.createElement("span");this.label.setAttribute("class","wrapper");this.label.onclick=()=>{this.mode=this.mode===h?r:h;if(this.permanent){localStorage.setItem(e,this.mode)}this.o();this.h()};s.appendChild(this.label);this.icon=t.createElement("span");this.icon.part="icon";this.label.appendChild(this.icon);this.text=t.createElement("span");this.text.part="text";this.label.appendChild(this.text);const o=`
+[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-theme-bg: #0d1117;
+  --color-theme-text: #c9d1d9;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}
+
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-theme-bg: #fff;
+  --color-theme-text: #24292f;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}`;const i="_dark_mode_style_";const n=t.getElementById(i);if(!n){var c=t.createElement("style");c.id=i;c.textContent=o;t.head.appendChild(c)}var a=t.createElement("style");a.textContent=`
+    .wrapper { cursor: pointer; user-select: none; position: relative; }
+    .wrapper > span + span { margin-left: .4rem; }
+    `;s.appendChild(a)}i(t,e){this.dispatchEvent(new CustomEvent(t,{bubbles:true,composed:true,detail:e}))}}customElements.define("dark-mode",a);</script><div style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px;max-width: 960px;" class="markdown-style">
+    <h1 id="appauthservice--hướng-dẫn-sử-dụng"><a class="anchor" aria-hidden="true" tabindex="-1" href="#appauthservice--hướng-dẫn-sử-dụng"><span class="octicon octicon-link"></span></a>AppAuthService — Hướng Dẫn Sử Dụng</h1>
+    <blockquote>
+      <p><strong>Phiên bản:</strong> 1.0 | <strong>Công nghệ:</strong> .NET 8 Web API | <strong>Database:</strong> MS-SQL Server</p>
+    </blockquote>
+    <hr>
+    <h2 id="mục-lục"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mục-lục"><span class="octicon octicon-link"></span></a>Mục Lục</h2>
+    <ol>
+      <li><a href="#1-t%E1%BB%95ng-quan">Tổng quan</a></li>
+      <li><a href="#2-quy-%C6%B0%E1%BB%9Bc-chung">Quy ước chung</a></li>
+      <li><a href="#3-lu%E1%BB%93ng-thi%E1%BA%BFt-l%E1%BA%ADp-ban-%C4%91%E1%BA%A7u-setup-flow">Luồng thiết lập ban đầu (Setup Flow)</a></li>
+      <li><a href="#4-api-reference">API Reference</a>
+        <ul>
+          <li><a href="#41-company">4.1 Company</a></li>
+          <li><a href="#42-application">4.2 Application</a></li>
+          <li><a href="#43-role">4.3 Role</a></li>
+          <li><a href="#44-user">4.4 User</a></li>
+          <li><a href="#45-auth--x%C3%A1c-th%E1%BB%B1c--token">4.5 Auth — Xác thực &#x26; Token</a></li>
+          <li><a href="#46-blacklist">4.6 Blacklist</a></li>
+        </ul>
+      </li>
+      <li><a href="#5-lu%E1%BB%93ng-nghi%E1%BB%87p-v%E1%BB%A5-chi-ti%E1%BA%BFt">Luồng nghiệp vụ chi tiết</a>
+        <ul>
+          <li><a href="#51-%C4%91%C4%83ng-nh%E1%BA%ADp-login">5.1 Đăng nhập (Login)</a></li>
+          <li><a href="#52-ki%E1%BB%83m-tra-quy%E1%BB%81n-t%E1%BA%A1i-%E1%BB%A9ng-d%E1%BB%A5ng-client">5.2 Kiểm tra quyền tại ứng dụng client</a></li>
+          <li><a href="#53-refresh-token">5.3 Refresh Token</a></li>
+          <li><a href="#54-chuy%E1%BB%83n-%E1%BB%A9ng-d%E1%BB%A5ng-switch-app--sso">5.4 Chuyển ứng dụng (Switch App / SSO)</a></li>
+        </ul>
+      </li>
+      <li><a href="#6-c%E1%BA%A5u-tr%C3%BAc-response-chu%E1%BA%A9n">Cấu trúc Response chuẩn</a></li>
+      <li><a href="#7-b%E1%BA%A3ng-error-code">Bảng Error Code</a></li>
+      <li><a href="#8-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%ADch-h%E1%BB%A3p-cho-%E1%BB%A9ng-d%E1%BB%A5ng-m%E1%BB%9Bi">Hướng dẫn tích hợp cho ứng dụng mới</a></li>
+    </ol>
+    <hr>
+    <h2 id="1-tổng-quan"><a class="anchor" aria-hidden="true" tabindex="-1" href="#1-tổng-quan"><span class="octicon octicon-link"></span></a>1. Tổng Quan</h2>
+    <p><strong>AppAuthService (AS)</strong> là một microservice độc lập, đóng vai trò là <strong>trung tâm xác thực và phân quyền</strong> cho toàn bộ hệ sinh thái ứng dụng của doanh nghiệp.</p>
+    <pre><code class="code-highlight"><span class="code-line line-number" line="1">┌─────────────────────────────────────────────────────────┐
+</span><span class="code-line line-number" line="2">│                    Hệ sinh thái ứng dụng                │
+</span><span class="code-line line-number" line="3">│                                                         │
+</span><span class="code-line line-number" line="4">│  ┌──────────┐   ┌──────────┐   ┌──────────────────┐    │
+</span><span class="code-line line-number" line="5">│  │ FnBInv   │   │   POS    │   │  App khác ...    │    │
+</span><span class="code-line line-number" line="6">│  │  Client  │   │  Client  │   │     Client       │    │
+</span><span class="code-line line-number" line="7">│  └────┬─────┘   └────┬─────┘   └────────┬─────────┘    │
+</span><span class="code-line line-number" line="8">│       │              │                  │               │
+</span><span class="code-line line-number" line="9">│       └──────────────┴──────────────────┘               │
+</span><span class="code-line line-number" line="10">│                           │                             │
+</span><span class="code-line line-number" line="11">│                  ┌────────▼────────┐                    │
+</span><span class="code-line line-number" line="12">│                  │ AppAuthService  │                    │
+</span><span class="code-line line-number" line="13">│                  │   (API :5000)   │                    │
+</span><span class="code-line line-number" line="14">│                  └────────┬────────┘                    │
+</span><span class="code-line line-number" line="15">│                           │                             │
+</span><span class="code-line line-number" line="16">│                  ┌────────▼────────┐                    │
+</span><span class="code-line line-number" line="17">│                  │  SQL Server DB  │                    │
+</span><span class="code-line line-number" line="18">│                  │ AppAuthService  │                    │
+</span><span class="code-line line-number" line="19">│                  └─────────────────┘                    │
+</span><span class="code-line line-number" line="20">└─────────────────────────────────────────────────────────┘
+</span></code><div onclick="copied(this)" data-code="┌─────────────────────────────────────────────────────────┐
+│                    Hệ sinh thái ứng dụng                │
+│                                                         │
+│  ┌──────────┐   ┌──────────┐   ┌──────────────────┐    │
+│  │ FnBInv   │   │   POS    │   │  App khác ...    │    │
+│  │  Client  │   │  Client  │   │     Client       │    │
+│  └────┬─────┘   └────┬─────┘   └────────┬─────────┘    │
+│       │              │                  │               │
+│       └──────────────┴──────────────────┘               │
+│                           │                             │
+│                  ┌────────▼────────┐                    │
+│                  │ AppAuthService  │                    │
+│                  │   (API :5000)   │                    │
+│                  └────────┬────────┘                    │
+│                           │                             │
+│                  ┌────────▼────────┐                    │
+│                  │  SQL Server DB  │                    │
+│                  │ AppAuthService  │                    │
+│                  └─────────────────┘                    │
+└─────────────────────────────────────────────────────────┘
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Mục tiêu cốt lõi:</strong></p>
+    <ul>
+      <li>Tách biệt logic xác thực ra khỏi từng ứng dụng</li>
+      <li>Hỗ trợ <strong>SSO</strong> — đăng nhập một lần, dùng trên nhiều app</li>
+      <li>Quản lý phân quyền <strong>chi tiết đến từng object</strong> (View/Process/Data)</li>
+      <li>Bảo mật nâng cao: Refresh Token Rotation, IP/User Blacklist, Security Audit</li>
+    </ul>
+    <hr>
+    <h2 id="2-quy-ước-chung"><a class="anchor" aria-hidden="true" tabindex="-1" href="#2-quy-ước-chung"><span class="octicon octicon-link"></span></a>2. Quy Ước Chung</h2>
+    <h3 id="21-authentication-header"><a class="anchor" aria-hidden="true" tabindex="-1" href="#21-authentication-header"><span class="octicon octicon-link"></span></a>2.1 Authentication Header</h3>
+    <p>Mọi request đến AS (trừ <code>POST /api/company/register</code>) đều <strong>bắt buộc</strong> có header:</p>
+    <pre class="language-http"><code class="language-http code-highlight"><span class="code-line line-number" line="1"><span class="token header"><span class="token header-name keyword">x-api-key</span><span class="token punctuation">:</span> <span class="token header-value">{RegKey_của_công_ty}</span></span>
+</span></code><div onclick="copied(this)" data-code="x-api-key: {RegKey_của_công_ty}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <blockquote>
+      <p><code>RegKey</code> được cấp phát khi đăng ký công ty (Company Registration). Admin giữ và phân phối key này cho các ứng dụng client.</p>
+    </blockquote>
+    <p>Với các endpoint yêu cầu JWT (switch-app):</p>
+    <pre class="language-http"><code class="language-http code-highlight"><span class="code-line line-number" line="1"><span class="token header"><span class="token header-name keyword">x-api-key</span><span class="token punctuation">:</span> <span class="token header-value">{RegKey}</span></span>
+</span><span class="code-line line-number" line="2"><span class="token header"><span class="token header-name keyword">Authorization</span><span class="token punctuation">:</span> <span class="token header-value">Bearer {access_token}</span></span>
+</span></code><div onclick="copied(this)" data-code="x-api-key: {RegKey}
+Authorization: Bearer {access_token}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <h3 id="22-base-url"><a class="anchor" aria-hidden="true" tabindex="-1" href="#22-base-url"><span class="octicon octicon-link"></span></a>2.2 Base URL</h3>
+    <pre><code class="code-highlight"><span class="code-line line-number" line="1">http(s)://{host}:{port}/api
+</span></code><div onclick="copied(this)" data-code="http(s)://{host}:{port}/api
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p>Ví dụ môi trường dev: <code>http://localhost:5000/api</code></p>
+    <h3 id="23-content-type"><a class="anchor" aria-hidden="true" tabindex="-1" href="#23-content-type"><span class="octicon octicon-link"></span></a>2.3 Content-Type</h3>
+    <pre class="language-http"><code class="language-http code-highlight"><span class="code-line line-number" line="1"><span class="token header"><span class="token header-name keyword">Content-Type</span><span class="token punctuation">:</span> <span class="token header-value">application/json</span></span>
+</span></code><div onclick="copied(this)" data-code="Content-Type: application/json
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <h2 id="3-luồng-thiết-lập-ban-đầu-setup-flow"><a class="anchor" aria-hidden="true" tabindex="-1" href="#3-luồng-thiết-lập-ban-đầu-setup-flow"><span class="octicon octicon-link"></span></a>3. Luồng Thiết Lập Ban Đầu (Setup Flow)</h2>
+    <p>Khi tích hợp một ứng dụng mới vào hệ thống, cần thực hiện <strong>theo đúng thứ tự</strong>:</p>
+    <pre><code class="code-highlight"><span class="code-line line-number" line="1">Bước 1: Đăng ký Công ty          → Nhận RegKey (x-api-key)
+</span><span class="code-line line-number" line="2">    │
+</span><span class="code-line line-number" line="3">    ▼
+</span><span class="code-line line-number" line="4">Bước 2: Đăng ký Ứng dụng         → Dùng RegKey; Nhận AppKey (JWT Key)
+</span><span class="code-line line-number" line="5">    │
+</span><span class="code-line line-number" line="6">    ▼
+</span><span class="code-line line-number" line="7">Bước 3: Khai báo App Objects      → Định nghĩa các màn hình/chức năng cần phân quyền
+</span><span class="code-line line-number" line="8">    │
+</span><span class="code-line line-number" line="9">    ▼
+</span><span class="code-line line-number" line="10">Bước 4: Tạo Roles + phân quyền   → Gắn quyền (CRUD) lên từng AppObject cho mỗi Role
+</span><span class="code-line line-number" line="11">    │
+</span><span class="code-line line-number" line="12">    ▼
+</span><span class="code-line line-number" line="13">Bước 5: Tạo Users                 → Tạo tài khoản người dùng
+</span><span class="code-line line-number" line="14">    │
+</span><span class="code-line line-number" line="15">    ▼
+</span><span class="code-line line-number" line="16">Bước 6: Gán Roles cho Users       → Ánh xạ User ↔ Role trong từng App
+</span><span class="code-line line-number" line="17">    │
+</span><span class="code-line line-number" line="18">    ▼
+</span><span class="code-line line-number" line="19">✅ Sẵn sàng: Client có thể Login và hoạt động
+</span></code><div onclick="copied(this)" data-code="Bước 1: Đăng ký Công ty          → Nhận RegKey (x-api-key)
+    │
+    ▼
+Bước 2: Đăng ký Ứng dụng         → Dùng RegKey; Nhận AppKey (JWT Key)
+    │
+    ▼
+Bước 3: Khai báo App Objects      → Định nghĩa các màn hình/chức năng cần phân quyền
+    │
+    ▼
+Bước 4: Tạo Roles + phân quyền   → Gắn quyền (CRUD) lên từng AppObject cho mỗi Role
+    │
+    ▼
+Bước 5: Tạo Users                 → Tạo tài khoản người dùng
+    │
+    ▼
+Bước 6: Gán Roles cho Users       → Ánh xạ User ↔ Role trong từng App
+    │
+    ▼
+✅ Sẵn sàng: Client có thể Login và hoạt động
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <h2 id="4-api-reference"><a class="anchor" aria-hidden="true" tabindex="-1" href="#4-api-reference"><span class="octicon octicon-link"></span></a>4. API Reference</h2>
+    <h3 id="41-company"><a class="anchor" aria-hidden="true" tabindex="-1" href="#41-company"><span class="octicon octicon-link"></span></a>4.1 Company</h3>
+    <h4 id="post-apicompanyregister"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apicompanyregister"><span class="octicon octicon-link"></span></a><code>POST /api/company/register</code></h4>
+    <p>Đăng ký công ty mới. Không cần <code>x-api-key</code>.</p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Morning Star AppTech"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"MSA"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Công ty phát triển phần mềm"</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;name&#x22;: &#x22;Morning Star AppTech&#x22;,
+  &#x22;number&#x22;: &#x22;MSA&#x22;,
+  &#x22;description&#x22;: &#x22;Công ty phát triển phần mềm&#x22;
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Response thành công (<code>200 OK</code>):</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"ok"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"Company registered successfully"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"errorCode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"object"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Morning Star AppTech"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"MSA"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">    <span class="token property">"regKey"</span><span class="token operator">:</span> <span class="token string">"a1b2c3d4e5f6..."</span>
+</span><span class="code-line line-number" line="10">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;ok&#x22;: true,
+  &#x22;message&#x22;: &#x22;Company registered successfully&#x22;,
+  &#x22;errorCode&#x22;: 0,
+  &#x22;object&#x22;: {
+    &#x22;id&#x22;: 1,
+    &#x22;name&#x22;: &#x22;Morning Star AppTech&#x22;,
+    &#x22;number&#x22;: &#x22;MSA&#x22;,
+    &#x22;regKey&#x22;: &#x22;a1b2c3d4e5f6...&#x22;
+  }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <blockquote>
+      <p>⚠️ <strong>Lưu <code>regKey</code> ngay lập tức.</strong> Đây chính là <code>x-api-key</code> dùng cho toàn bộ các request tiếp theo.</p>
+    </blockquote>
+    <hr>
+    <h4 id="get-apicompany"><a class="anchor" aria-hidden="true" tabindex="-1" href="#get-apicompany"><span class="octicon octicon-link"></span></a><code>GET /api/company</code></h4>
+    <p>Lấy danh sách công ty.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <hr>
+    <h3 id="42-application"><a class="anchor" aria-hidden="true" tabindex="-1" href="#42-application"><span class="octicon octicon-link"></span></a>4.2 Application</h3>
+    <h4 id="post-apiapplicationregister"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiapplicationregister"><span class="octicon octicon-link"></span></a><code>POST /api/application/register</code></h4>
+    <p>Đăng ký ứng dụng mới vào công ty.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"FnB Inventory"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Quản lý hàng hóa chuỗi nhà hàng"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"jwtConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"audience"</span><span class="token operator">:</span> <span class="token string">"FnBInv_Users"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"expire"</span><span class="token operator">:</span> <span class="token number">60</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">    <span class="token property">"refExpire"</span><span class="token operator">:</span> <span class="token number">43200</span>
+</span><span class="code-line line-number" line="10">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="11"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;name&#x22;: &#x22;FnB Inventory&#x22;,
+  &#x22;number&#x22;: &#x22;FnBInv&#x22;,
+  &#x22;description&#x22;: &#x22;Quản lý hàng hóa chuỗi nhà hàng&#x22;,
+  &#x22;jwtConfig&#x22;: {
+    &#x22;issuer&#x22;: &#x22;FnBInv&#x22;,
+    &#x22;audience&#x22;: &#x22;FnBInv_Users&#x22;,
+    &#x22;expire&#x22;: 60,
+    &#x22;refExpire&#x22;: 43200
+  }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <blockquote>
+      <p><strong><code>jwtConfig</code> là optional.</strong> Nếu không truyền hoặc để null, hệ thống sẽ dùng JwtConfig mặc định cấu hình trong <code>appsettings.json</code>.</p>
+      <p>Nếu muốn <strong>mỗi app có JWT key riêng biệt</strong> (bảo mật cao hơn), hãy truyền <code>jwtConfig</code>.</p>
+    </blockquote>
+    <p><strong>Response thành công:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"ok"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"object"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"appKey"</span><span class="token operator">:</span> <span class="token string">"jwt-secret-key-được-sinh-tự-động"</span>
+</span><span class="code-line line-number" line="7">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;ok&#x22;: true,
+  &#x22;object&#x22;: {
+    &#x22;id&#x22;: 1,
+    &#x22;number&#x22;: &#x22;FnBInv&#x22;,
+    &#x22;appKey&#x22;: &#x22;jwt-secret-key-được-sinh-tự-động&#x22;
+  }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <h4 id="post-apiapplicationobjects"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiapplicationobjects"><span class="octicon octicon-link"></span></a><code>POST /api/application/objects</code></h4>
+    <p>Khai báo danh sách App Objects (màn hình/chức năng cần phân quyền).</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"appNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"objects"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="4">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="5">      <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"STKM"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"StockMaster"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">      <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Quản trị danh mục stock"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">      <span class="token property">"objectType"</span><span class="token operator">:</span> <span class="token string">"View"</span>
+</span><span class="code-line line-number" line="9">    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="11">      <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"STK_IN"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"StockIn"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">      <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Phiếu Nhập kho"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="14">      <span class="token property">"objectType"</span><span class="token operator">:</span> <span class="token string">"Data"</span>
+</span><span class="code-line line-number" line="15">    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="16">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="17">      <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"PR"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="18">      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"PurchaseRequest"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="19">      <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Phiếu yêu cầu mua hàng"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="20">      <span class="token property">"objectType"</span><span class="token operator">:</span> <span class="token string">"Process"</span>
+</span><span class="code-line line-number" line="21">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="22">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="23"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;appNumber&#x22;: &#x22;FnBInv&#x22;,
+  &#x22;objects&#x22;: [
+    {
+      &#x22;number&#x22;: &#x22;STKM&#x22;,
+      &#x22;name&#x22;: &#x22;StockMaster&#x22;,
+      &#x22;description&#x22;: &#x22;Quản trị danh mục stock&#x22;,
+      &#x22;objectType&#x22;: &#x22;View&#x22;
+    },
+    {
+      &#x22;number&#x22;: &#x22;STK_IN&#x22;,
+      &#x22;name&#x22;: &#x22;StockIn&#x22;,
+      &#x22;description&#x22;: &#x22;Phiếu Nhập kho&#x22;,
+      &#x22;objectType&#x22;: &#x22;Data&#x22;
+    },
+    {
+      &#x22;number&#x22;: &#x22;PR&#x22;,
+      &#x22;name&#x22;: &#x22;PurchaseRequest&#x22;,
+      &#x22;description&#x22;: &#x22;Phiếu yêu cầu mua hàng&#x22;,
+      &#x22;objectType&#x22;: &#x22;Process&#x22;
+    }
+  ]
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong><code>objectType</code> hợp lệ:</strong> <code>View</code> | <code>Process</code> | <code>Data</code></p>
+    <hr>
+    <h4 id="get-apiapplication"><a class="anchor" aria-hidden="true" tabindex="-1" href="#get-apiapplication"><span class="octicon octicon-link"></span></a><code>GET /api/application</code></h4>
+    <p>Lấy danh sách ứng dụng.</p>
+    <h4 id="get-apiapplicationappidobjects"><a class="anchor" aria-hidden="true" tabindex="-1" href="#get-apiapplicationappidobjects"><span class="octicon octicon-link"></span></a><code>GET /api/application/{appId}/objects</code></h4>
+    <p>Lấy danh sách AppObjects của một ứng dụng.</p>
+    <hr>
+    <h3 id="43-role"><a class="anchor" aria-hidden="true" tabindex="-1" href="#43-role"><span class="octicon octicon-link"></span></a>4.3 Role</h3>
+    <h4 id="post-apirolecreate"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apirolecreate"><span class="octicon octicon-link"></span></a><code>POST /api/role/create</code></h4>
+    <p>Tạo Role mới và gán quyền lên các AppObjects.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"StockAdmin"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"number"</span><span class="token operator">:</span> <span class="token string">"STK_ADMIN"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Quản trị nhập master data"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"appNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"rights"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="7">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">      <span class="token property">"appObjectNumber"</span><span class="token operator">:</span> <span class="token string">"STKM"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">      <span class="token property">"canList"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">      <span class="token property">"canRead"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="11">      <span class="token property">"canCreate"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">      <span class="token property">"canUpdate"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">      <span class="token property">"canDelete"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="14">    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="15">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="16">      <span class="token property">"appObjectNumber"</span><span class="token operator">:</span> <span class="token string">"WHM"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="17">      <span class="token property">"canList"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="18">      <span class="token property">"canRead"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="19">      <span class="token property">"canCreate"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="20">      <span class="token property">"canUpdate"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="21">      <span class="token property">"canDelete"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+</span><span class="code-line line-number" line="22">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="23">  <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="24"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;name&#x22;: &#x22;StockAdmin&#x22;,
+  &#x22;number&#x22;: &#x22;STK_ADMIN&#x22;,
+  &#x22;description&#x22;: &#x22;Quản trị nhập master data&#x22;,
+  &#x22;appNumber&#x22;: &#x22;FnBInv&#x22;,
+  &#x22;rights&#x22;: [
+    {
+      &#x22;appObjectNumber&#x22;: &#x22;STKM&#x22;,
+      &#x22;canList&#x22;: true,
+      &#x22;canRead&#x22;: true,
+      &#x22;canCreate&#x22;: true,
+      &#x22;canUpdate&#x22;: true,
+      &#x22;canDelete&#x22;: true
+    },
+    {
+      &#x22;appObjectNumber&#x22;: &#x22;WHM&#x22;,
+      &#x22;canList&#x22;: true,
+      &#x22;canRead&#x22;: true,
+      &#x22;canCreate&#x22;: true,
+      &#x22;canUpdate&#x22;: true,
+      &#x22;canDelete&#x22;: false
+    }
+  ]
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <blockquote>
+      <p><strong>Gộp quyền (Merge):</strong> Nếu một user có nhiều role, quyền sẽ được <strong>OR</strong> lại. Ví dụ: Role A có <code>CanCreate=false</code>, Role B có <code>CanCreate=true</code> → User có <code>CanCreate=true</code>.</p>
+    </blockquote>
+    <hr>
+    <h4 id="get-apiroleappappid"><a class="anchor" aria-hidden="true" tabindex="-1" href="#get-apiroleappappid"><span class="octicon octicon-link"></span></a><code>GET /api/role/app/{appId}</code></h4>
+    <p>Lấy danh sách role theo ứng dụng.</p>
+    <hr>
+    <h3 id="44-user"><a class="anchor" aria-hidden="true" tabindex="-1" href="#44-user"><span class="octicon octicon-link"></span></a>4.4 User</h3>
+    <h4 id="post-apiusercreate"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiusercreate"><span class="octicon octicon-link"></span></a><code>POST /api/user/create</code></h4>
+    <p>Tạo tài khoản người dùng mới.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"userName"</span><span class="token operator">:</span> <span class="token string">"bac"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"fullName"</span><span class="token operator">:</span> <span class="token string">"Lâm Hồng Bắc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"password"</span><span class="token operator">:</span> <span class="token string">"Pass123!"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"bac@msa.vn"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"mobile"</span><span class="token operator">:</span> <span class="token string">"0901234567"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">  <span class="token property">"cardNum"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;userName&#x22;: &#x22;bac&#x22;,
+  &#x22;fullName&#x22;: &#x22;Lâm Hồng Bắc&#x22;,
+  &#x22;password&#x22;: &#x22;Pass123!&#x22;,
+  &#x22;email&#x22;: &#x22;bac@msa.vn&#x22;,
+  &#x22;mobile&#x22;: &#x22;0901234567&#x22;,
+  &#x22;cardNum&#x22;: null
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <blockquote>
+      <p><strong>Lưu ý về định danh:</strong> User có thể được định danh bằng 4 cách: <code>UserName</code>, <code>Email</code>, <code>Mobile</code>, <code>CardNum</code>. Tất cả đều có thể dùng để đăng nhập.</p>
+    </blockquote>
+    <hr>
+    <h4 id="post-apiuserassign-roles"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiuserassign-roles"><span class="octicon octicon-link"></span></a><code>POST /api/user/assign-roles</code></h4>
+    <p>Gán vai trò (roles) cho user trong một ứng dụng cụ thể.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"userName"</span><span class="token operator">:</span> <span class="token string">"bac"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"appNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"roleNumbers"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"STK_ADMIN"</span><span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;userName&#x22;: &#x22;bac&#x22;,
+  &#x22;appNumber&#x22;: &#x22;FnBInv&#x22;,
+  &#x22;roleNumbers&#x22;: [&#x22;STK_ADMIN&#x22;]
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <blockquote>
+      <p>Có thể gán <strong>nhiều roles</strong> cùng lúc. Quyền sẽ được merge khi user đăng nhập.</p>
+    </blockquote>
+    <hr>
+    <h4 id="get-apiuser"><a class="anchor" aria-hidden="true" tabindex="-1" href="#get-apiuser"><span class="octicon octicon-link"></span></a><code>GET /api/user</code></h4>
+    <p>Lấy danh sách người dùng.</p>
+    <hr>
+    <h3 id="45-auth--xác-thực--token"><a class="anchor" aria-hidden="true" tabindex="-1" href="#45-auth--xác-thực--token"><span class="octicon octicon-link"></span></a>4.5 Auth — Xác thực &#x26; Token</h3>
+    <h4 id="post-apiauthlogin"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiauthlogin"><span class="octicon octicon-link"></span></a><code>POST /api/auth/login</code></h4>
+    <p>Xác thực người dùng và cấp phát JWT.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"userName"</span><span class="token operator">:</span> <span class="token string">"bac"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"password"</span><span class="token operator">:</span> <span class="token string">"Pass123!"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"appNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;userName&#x22;: &#x22;bac&#x22;,
+  &#x22;password&#x22;: &#x22;Pass123!&#x22;,
+  &#x22;appNumber&#x22;: &#x22;FnBInv&#x22;
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Response thành công (<code>200 OK</code>):</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"ok"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"Login successful"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"errorCode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"object"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"userInfo"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="8">      <span class="token property">"username"</span><span class="token operator">:</span> <span class="token string">"bac"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">      <span class="token property">"fullName"</span><span class="token operator">:</span> <span class="token string">"Lâm Hồng Bắc"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">      <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"bac@msa.vn"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="11">      <span class="token property">"mobile"</span><span class="token operator">:</span> <span class="token string">"0901234567"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">      <span class="token property">"currentAppNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">      <span class="token property">"mergedRights"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+</span><span class="code-line line-number" line="14">        <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="15">          <span class="token property">"objectId"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="16">          <span class="token property">"objectNumber"</span><span class="token operator">:</span> <span class="token string">"STKM"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="17">          <span class="token property">"objectName"</span><span class="token operator">:</span> <span class="token string">"StockMaster"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="18">          <span class="token property">"canList"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="19">          <span class="token property">"canRead"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="20">          <span class="token property">"canCreate"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="21">          <span class="token property">"canUpdate"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="22">          <span class="token property">"canDelete"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+</span><span class="code-line line-number" line="23">        <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="24">      <span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="25">    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="26">    <span class="token property">"jwtInfo"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="27">      <span class="token property">"accessToken"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzI1NiIs..."</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="28">      <span class="token property">"refreshToken"</span><span class="token operator">:</span> <span class="token string">"d4f8a2b1-..."</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="29">      <span class="token property">"expiredAt"</span><span class="token operator">:</span> <span class="token string">"2026-05-12T16:00:00Z"</span>
+</span><span class="code-line line-number" line="30">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="31">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="32"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;ok&#x22;: true,
+  &#x22;message&#x22;: &#x22;Login successful&#x22;,
+  &#x22;errorCode&#x22;: 0,
+  &#x22;object&#x22;: {
+    &#x22;userInfo&#x22;: {
+      &#x22;id&#x22;: 1,
+      &#x22;username&#x22;: &#x22;bac&#x22;,
+      &#x22;fullName&#x22;: &#x22;Lâm Hồng Bắc&#x22;,
+      &#x22;email&#x22;: &#x22;bac@msa.vn&#x22;,
+      &#x22;mobile&#x22;: &#x22;0901234567&#x22;,
+      &#x22;currentAppNumber&#x22;: &#x22;FnBInv&#x22;,
+      &#x22;mergedRights&#x22;: [
+        {
+          &#x22;objectId&#x22;: 1,
+          &#x22;objectNumber&#x22;: &#x22;STKM&#x22;,
+          &#x22;objectName&#x22;: &#x22;StockMaster&#x22;,
+          &#x22;canList&#x22;: true,
+          &#x22;canRead&#x22;: true,
+          &#x22;canCreate&#x22;: true,
+          &#x22;canUpdate&#x22;: true,
+          &#x22;canDelete&#x22;: true
+        }
+      ]
+    },
+    &#x22;jwtInfo&#x22;: {
+      &#x22;accessToken&#x22;: &#x22;eyJhbGciOiJIUzI1NiIs...&#x22;,
+      &#x22;refreshToken&#x22;: &#x22;d4f8a2b1-...&#x22;,
+      &#x22;expiredAt&#x22;: &#x22;2026-05-12T16:00:00Z&#x22;
+    }
+  }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Cách client sử dụng sau login:</strong></p>
+    <ol>
+      <li>Lưu <code>accessToken</code> và <code>refreshToken</code> vào secure storage (localStorage / SecureStore / Keychain)</li>
+      <li>Lưu <code>mergedRights</code> vào app state để <strong>kiểm tra quyền hiển thị UI</strong> (ẩn/hiện nút, menu)</li>
+      <li>Gắn <code>accessToken</code> vào header <code>Authorization: Bearer {token}</code> cho mọi request đến app-service</li>
+    </ol>
+    <hr>
+    <h4 id="post-apiauthrefresh-token"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiauthrefresh-token"><span class="octicon octicon-link"></span></a><code>POST /api/auth/refresh-token</code></h4>
+    <p>Cấp phát cặp token mới khi <code>accessToken</code> hết hạn.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"accessToken"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzI1NiIs...(token cũ, có thể đã expired)"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"refreshToken"</span><span class="token operator">:</span> <span class="token string">"d4f8a2b1-..."</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"appNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;accessToken&#x22;: &#x22;eyJhbGciOiJIUzI1NiIs...(token cũ, có thể đã expired)&#x22;,
+  &#x22;refreshToken&#x22;: &#x22;d4f8a2b1-...&#x22;,
+  &#x22;appNumber&#x22;: &#x22;FnBInv&#x22;
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Response thành công:</strong> Cấu trúc tương tự <code>/auth/login</code> — trả về <code>LoginResponse</code> mới với cặp token mới.</p>
+    <blockquote>
+      <p>⚠️ <strong>Cơ chế Refresh Token Rotation:</strong></p>
+      <ul>
+        <li>Mỗi lần refresh, <code>refreshToken</code> cũ sẽ bị đánh dấu <code>IsUsed=true</code> và <strong>không thể dùng lại</strong></li>
+        <li>Nếu kẻ xấu cố dùng lại refreshToken cũ → hệ thống phát hiện <strong>Token Reuse Attack</strong>, tự động thu hồi tất cả session của user và trả về lỗi bảo mật</li>
+      </ul>
+    </blockquote>
+    <hr>
+    <h4 id="post-apiauthswitch-app"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiauthswitch-app"><span class="octicon octicon-link"></span></a><code>POST /api/auth/switch-app</code></h4>
+    <p>Chuyển sang ứng dụng khác <strong>mà không cần đăng nhập lại</strong> (SSO).</p>
+    <p><strong>Headers:</strong></p>
+    <pre class="language-http"><code class="language-http code-highlight"><span class="code-line line-number" line="1"><span class="token header"><span class="token header-name keyword">x-api-key</span><span class="token punctuation">:</span> <span class="token header-value">{RegKey}</span></span>
+</span><span class="code-line line-number" line="2"><span class="token header"><span class="token header-name keyword">Authorization</span><span class="token punctuation">:</span> <span class="token header-value">Bearer {access_token_hiện_tại}</span></span>
+</span></code><div onclick="copied(this)" data-code="x-api-key: {RegKey}
+Authorization: Bearer {access_token_hiện_tại}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"appNumber"</span><span class="token operator">:</span> <span class="token string">"POS"</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;appNumber&#x22;: &#x22;POS&#x22;
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Response thành công:</strong> Trả về <code>LoginResponse</code> mới với <code>mergedRights</code> của app đích (<code>POS</code>), token mới được ký bằng JWT key của app <code>POS</code>.</p>
+    <hr>
+    <h3 id="46-blacklist"><a class="anchor" aria-hidden="true" tabindex="-1" href="#46-blacklist"><span class="octicon octicon-link"></span></a>4.6 Blacklist</h3>
+    <h4 id="post-apiblacklistadd"><a class="anchor" aria-hidden="true" tabindex="-1" href="#post-apiblacklistadd"><span class="octicon octicon-link"></span></a><code>POST /api/blacklist/add</code></h4>
+    <p>Thêm IP hoặc username vào danh sách chặn.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <p><strong>Request Body:</strong></p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"hacker_user"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"reason"</span><span class="token operator">:</span> <span class="token string">"Brute force detected"</span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;type&#x22;: &#x22;user&#x22;,
+  &#x22;value&#x22;: &#x22;hacker_user&#x22;,
+  &#x22;reason&#x22;: &#x22;Brute force detected&#x22;
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><code>type</code> hợp lệ: <code>"user"</code> | <code>"ip"</code></p>
+    <hr>
+    <h4 id="delete-apiblacklistremovetypetypevaluevalue"><a class="anchor" aria-hidden="true" tabindex="-1" href="#delete-apiblacklistremovetypetypevaluevalue"><span class="octicon octicon-link"></span></a><code>DELETE /api/blacklist/remove?type={type}&#x26;value={value}</code></h4>
+    <p>Gỡ bỏ khỏi danh sách chặn.</p>
+    <p><strong>Headers:</strong> <code>x-api-key: {RegKey}</code></p>
+    <hr>
+    <h2 id="5-luồng-nghiệp-vụ-chi-tiết"><a class="anchor" aria-hidden="true" tabindex="-1" href="#5-luồng-nghiệp-vụ-chi-tiết"><span class="octicon octicon-link"></span></a>5. Luồng Nghiệp Vụ Chi Tiết</h2>
+    <h3 id="51-đăng-nhập-login"><a class="anchor" aria-hidden="true" tabindex="-1" href="#51-đăng-nhập-login"><span class="octicon octicon-link"></span></a>5.1 Đăng Nhập (Login)</h3>
+    <pre><code class="code-highlight"><span class="code-line line-number" line="1">Client                          AppAuthService                      Database
+</span><span class="code-line line-number" line="2">  │                                  │                                  │
+</span><span class="code-line line-number" line="3">  │──POST /auth/login ──────────────►│                                  │
+</span><span class="code-line line-number" line="4">  │  {userName, password, appNumber} │                                  │
+</span><span class="code-line line-number" line="5">  │                                  │──Validate x-api-key ────────────►│
+</span><span class="code-line line-number" line="6">  │                                  │◄─ Company info ─────────────────│
+</span><span class="code-line line-number" line="7">  │                                  │                                  │
+</span><span class="code-line line-number" line="8">  │                                  │──Check User Blacklist ──────────►│
+</span><span class="code-line line-number" line="9">  │                                  │                                  │
+</span><span class="code-line line-number" line="10">  │                                  │──Find User by UserName ─────────►│
+</span><span class="code-line line-number" line="11">  │                                  │◄─ User record ──────────────────│
+</span><span class="code-line line-number" line="12">  │                                  │                                  │
+</span><span class="code-line line-number" line="13">  │                                  │  Verify Password (Hash + PwdKey) │
+</span><span class="code-line line-number" line="14">  │                                  │                                  │
+</span><span class="code-line line-number" line="15">  │                                  │──Get Roles in App ──────────────►│
+</span><span class="code-line line-number" line="16">  │                                  │──Get RoleRights ────────────────►│
+</span><span class="code-line line-number" line="17">  │                                  │  Merge Rights (OR logic)         │
+</span><span class="code-line line-number" line="18">  │                                  │                                  │
+</span><span class="code-line line-number" line="19">  │                                  │  Generate JWT + RefreshToken     │
+</span><span class="code-line line-number" line="20">  │                                  │──Save RefreshToken ─────────────►│
+</span><span class="code-line line-number" line="21">  │                                  │──Write AuditLog ────────────────►│
+</span><span class="code-line line-number" line="22">  │                                  │                                  │
+</span><span class="code-line line-number" line="23">  │◄─ LoginResponse (200 OK) ───────│                                  │
+</span><span class="code-line line-number" line="24">  │   {UserInfo, JwtInfo}            │                                  │
+</span></code><div onclick="copied(this)" data-code="Client                          AppAuthService                      Database
+  │                                  │                                  │
+  │──POST /auth/login ──────────────►│                                  │
+  │  {userName, password, appNumber} │                                  │
+  │                                  │──Validate x-api-key ────────────►│
+  │                                  │◄─ Company info ─────────────────│
+  │                                  │                                  │
+  │                                  │──Check User Blacklist ──────────►│
+  │                                  │                                  │
+  │                                  │──Find User by UserName ─────────►│
+  │                                  │◄─ User record ──────────────────│
+  │                                  │                                  │
+  │                                  │  Verify Password (Hash + PwdKey) │
+  │                                  │                                  │
+  │                                  │──Get Roles in App ──────────────►│
+  │                                  │──Get RoleRights ────────────────►│
+  │                                  │  Merge Rights (OR logic)         │
+  │                                  │                                  │
+  │                                  │  Generate JWT + RefreshToken     │
+  │                                  │──Save RefreshToken ─────────────►│
+  │                                  │──Write AuditLog ────────────────►│
+  │                                  │                                  │
+  │◄─ LoginResponse (200 OK) ───────│                                  │
+  │   {UserInfo, JwtInfo}            │                                  │
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <p><strong>Bảo mật tích hợp trong login:</strong></p>
+    <ul>
+      <li>Sau mỗi lần sai password: <code>SecurityAuditService.TrackFailedAttempt()</code> tăng bộ đếm</li>
+      <li>Khi vượt ngưỡng: tự động thêm user vào blacklist</li>
+      <li>Login thành công: reset bộ đếm</li>
+    </ul>
+    <hr>
+    <h3 id="52-kiểm-tra-quyền-tại-ứng-dụng-client"><a class="anchor" aria-hidden="true" tabindex="-1" href="#52-kiểm-tra-quyền-tại-ứng-dụng-client"><span class="octicon octicon-link"></span></a>5.2 Kiểm Tra Quyền Tại Ứng Dụng Client</h3>
+    <p>Sau khi login, client nhận được <code>mergedRights</code>. <strong>Không cần gọi AS để kiểm tra từng action</strong> — client tự kiểm tra từ dữ liệu đã có:</p>
+    <pre class="language-csharp"><code class="language-csharp code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// C# Blazor / .NET Client Example</span>
+</span><span class="code-line line-number" line="2"><span class="token class-name"><span class="token keyword">var</span></span> stkm <span class="token operator">=</span> loginResponse<span class="token punctuation">.</span>UserInfo<span class="token punctuation">.</span>MergedRights
+</span><span class="code-line line-number" line="3">    <span class="token punctuation">.</span><span class="token function">FirstOrDefault</span><span class="token punctuation">(</span>r <span class="token operator">=></span> r<span class="token punctuation">.</span>ObjectNumber <span class="token operator">==</span> <span class="token string">"STKM"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token class-name"><span class="token keyword">bool</span></span> canCreateStock <span class="token operator">=</span> stkm<span class="token punctuation">?.</span>CanCreate <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="6"><span class="token class-name"><span class="token keyword">bool</span></span> canDeleteStock <span class="token operator">=</span> stkm<span class="token punctuation">?.</span>CanDelete <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token comment">// Dùng để ẩn/hiện UI</span>
+</span><span class="code-line line-number" line="9"><span class="token operator">&#x3C;</span><span class="token class-name">button</span> style<span class="token operator">=</span><span class="token string">"display: @(canCreateStock ? "</span>block<span class="token string">" : "</span>none<span class="token string">")"</span><span class="token operator">></span>Tạo mới<span class="token operator">&#x3C;</span><span class="token operator">/</span>button<span class="token operator">></span>
+</span></code><div onclick="copied(this)" data-code="// C# Blazor / .NET Client Example
+var stkm = loginResponse.UserInfo.MergedRights
+    .FirstOrDefault(r => r.ObjectNumber == &#x22;STKM&#x22;);
+
+bool canCreateStock = stkm?.CanCreate ?? false;
+bool canDeleteStock = stkm?.CanDelete ?? false;
+
+// Dùng để ẩn/hiện UI
+<button style=&#x22;display: @(canCreateStock ? &#x22;block&#x22; : &#x22;none&#x22;)&#x22;>Tạo mới</button>
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <pre class="language-javascript"><code class="language-javascript code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// JavaScript / React / Vue Example</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">const</span> rights <span class="token operator">=</span> loginResponse<span class="token punctuation">.</span><span class="token property-access">object</span><span class="token punctuation">.</span><span class="token property-access">userInfo</span><span class="token punctuation">.</span><span class="token property-access">mergedRights</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">const</span> stkm <span class="token operator">=</span> rights<span class="token punctuation">.</span><span class="token method function property-access">find</span><span class="token punctuation">(</span><span class="token parameter">r</span> <span class="token arrow operator">=></span> r<span class="token punctuation">.</span><span class="token property-access">objectNumber</span> <span class="token operator">===</span> <span class="token string">'STKM'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token keyword">const</span> canCreate <span class="token operator">=</span> stkm<span class="token operator">?.</span>canCreate <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</span></code><div onclick="copied(this)" data-code="// JavaScript / React / Vue Example
+const rights = loginResponse.object.userInfo.mergedRights;
+const stkm = rights.find(r => r.objectNumber === &#x27;STKM&#x27;);
+
+const canCreate = stkm?.canCreate ?? false;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <h3 id="53-refresh-token"><a class="anchor" aria-hidden="true" tabindex="-1" href="#53-refresh-token"><span class="octicon octicon-link"></span></a>5.3 Refresh Token</h3>
+    <p>Áp dụng pattern <strong>Interceptor</strong> tại tầng HTTP client của ứng dụng:</p>
+    <pre><code class="code-highlight"><span class="code-line line-number" line="1">Client Request (với JWT đã expired)
+</span><span class="code-line line-number" line="2">        │
+</span><span class="code-line line-number" line="3">        ▼
+</span><span class="code-line line-number" line="4">  HTTP Response 401
+</span><span class="code-line line-number" line="5">        │
+</span><span class="code-line line-number" line="6">        ▼
+</span><span class="code-line line-number" line="7">  Interceptor bắt lỗi 401
+</span><span class="code-line line-number" line="8">        │
+</span><span class="code-line line-number" line="9">        ▼
+</span><span class="code-line line-number" line="10">  Gọi POST /auth/refresh-token
+</span><span class="code-line line-number" line="11">        │
+</span><span class="code-line line-number" line="12">   ┌────┴────────┐
+</span><span class="code-line line-number" line="13">   │ Thành công  │──► Lưu token mới → Retry request gốc → Tiếp tục
+</span><span class="code-line line-number" line="14">   └─────────────┘
+</span><span class="code-line line-number" line="15">   │ Thất bại    │──► Đăng xuất, chuyển về màn hình Login
+</span><span class="code-line line-number" line="16">   └─────────────┘
+</span></code><div onclick="copied(this)" data-code="Client Request (với JWT đã expired)
+        │
+        ▼
+  HTTP Response 401
+        │
+        ▼
+  Interceptor bắt lỗi 401
+        │
+        ▼
+  Gọi POST /auth/refresh-token
+        │
+   ┌────┴────────┐
+   │ Thành công  │──► Lưu token mới → Retry request gốc → Tiếp tục
+   └─────────────┘
+   │ Thất bại    │──► Đăng xuất, chuyển về màn hình Login
+   └─────────────┘
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <h3 id="54-chuyển-ứng-dụng-switch-app--sso"><a class="anchor" aria-hidden="true" tabindex="-1" href="#54-chuyển-ứng-dụng-switch-app--sso"><span class="octicon octicon-link"></span></a>5.4 Chuyển Ứng Dụng (Switch App / SSO)</h3>
+    <pre><code class="code-highlight"><span class="code-line line-number" line="1">User đang dùng FnBInv (có access_token_FnBInv)
+</span><span class="code-line line-number" line="2">        │
+</span><span class="code-line line-number" line="3">        │ Muốn chuyển sang POS
+</span><span class="code-line line-number" line="4">        ▼
+</span><span class="code-line line-number" line="5">POST /auth/switch-app
+</span><span class="code-line line-number" line="6">  Header: x-api-key, Authorization: Bearer {access_token_FnBInv}
+</span><span class="code-line line-number" line="7">  Body: { "appNumber": "POS" }
+</span><span class="code-line line-number" line="8">        │
+</span><span class="code-line line-number" line="9">        ▼
+</span><span class="code-line line-number" line="10">AS xác thực token cũ → Lấy MergedRights của user trong POS
+</span><span class="code-line line-number" line="11">        │
+</span><span class="code-line line-number" line="12">        ▼
+</span><span class="code-line line-number" line="13">Sinh JWT mới ký bằng AppKey của POS
+</span><span class="code-line line-number" line="14">        │
+</span><span class="code-line line-number" line="15">        ▼
+</span><span class="code-line line-number" line="16">Client nhận LoginResponse mới: token POS + rights POS
+</span><span class="code-line line-number" line="17">        │
+</span><span class="code-line line-number" line="18">        ▼
+</span><span class="code-line line-number" line="19">Lưu đè token mới, cập nhật UI theo rights của POS
+</span></code><div onclick="copied(this)" data-code="User đang dùng FnBInv (có access_token_FnBInv)
+        │
+        │ Muốn chuyển sang POS
+        ▼
+POST /auth/switch-app
+  Header: x-api-key, Authorization: Bearer {access_token_FnBInv}
+  Body: { &#x22;appNumber&#x22;: &#x22;POS&#x22; }
+        │
+        ▼
+AS xác thực token cũ → Lấy MergedRights của user trong POS
+        │
+        ▼
+Sinh JWT mới ký bằng AppKey của POS
+        │
+        ▼
+Client nhận LoginResponse mới: token POS + rights POS
+        │
+        ▼
+Lưu đè token mới, cập nhật UI theo rights của POS
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <h2 id="6-cấu-trúc-response-chuẩn"><a class="anchor" aria-hidden="true" tabindex="-1" href="#6-cấu-trúc-response-chuẩn"><span class="octicon octicon-link"></span></a>6. Cấu Trúc Response Chuẩn</h2>
+    <p>Mọi API đều trả về <code>BOProcessResult</code>:</p>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"ok"</span><span class="token operator">:</span> <span class="token boolean">true</span> | <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"Mô tả kết quả (tiếng Anh, dùng làm key đa ngôn ngữ)"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"errorCode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"object"</span><span class="token operator">:</span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="{
+  &#x22;ok&#x22;: true | false,
+  &#x22;message&#x22;: &#x22;Mô tả kết quả (tiếng Anh, dùng làm key đa ngôn ngữ)&#x22;,
+  &#x22;errorCode&#x22;: 0,
+  &#x22;object&#x22;: { ... }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Mô tả</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ok</code></td>
+          <td><code>bool</code></td>
+          <td><code>true</code> = thành công, <code>false</code> = thất bại</td>
+        </tr>
+        <tr>
+          <td><code>message</code></td>
+          <td><code>string</code></td>
+          <td>Message kết quả — client dùng làm key để dịch đa ngôn ngữ</td>
+        </tr>
+        <tr>
+          <td><code>errorCode</code></td>
+          <td><code>int</code></td>
+          <td>Mã lỗi cụ thể (xem bảng bên dưới)</td>
+        </tr>
+        <tr>
+          <td><code>object</code></td>
+          <td><code>any</code></td>
+          <td>Payload dữ liệu trả về khi thành công</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h2 id="7-bảng-error-code"><a class="anchor" aria-hidden="true" tabindex="-1" href="#7-bảng-error-code"><span class="octicon octicon-link"></span></a>7. Bảng Error Code</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ErrorCode</th>
+          <th>Tên</th>
+          <th>Ý nghĩa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>0</code></td>
+          <td>Success</td>
+          <td>Thành công</td>
+        </tr>
+        <tr>
+          <td><code>1001</code></td>
+          <td>InvalidToken</td>
+          <td>API Key hoặc JWT không hợp lệ</td>
+        </tr>
+        <tr>
+          <td><code>1002</code></td>
+          <td>InvalidCredentials</td>
+          <td>Sai username hoặc password</td>
+        </tr>
+        <tr>
+          <td><code>1003</code></td>
+          <td>UserLocked</td>
+          <td>User bị khoá hoặc nằm trong blacklist</td>
+        </tr>
+        <tr>
+          <td><code>1004</code></td>
+          <td>AppNotFound</td>
+          <td>Ứng dụng (AppNumber) không tồn tại</td>
+        </tr>
+        <tr>
+          <td><code>1005</code></td>
+          <td>ValidationError</td>
+          <td>Dữ liệu request không hợp lệ</td>
+        </tr>
+        <tr>
+          <td><code>1006</code></td>
+          <td>DuplicateEntry</td>
+          <td>Dữ liệu bị trùng lặp (number, username...)</td>
+        </tr>
+        <tr>
+          <td><code>9999</code></td>
+          <td>SystemError</td>
+          <td>Lỗi hệ thống không xác định</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h2 id="8-hướng-dẫn-tích-hợp-cho-ứng-dụng-mới"><a class="anchor" aria-hidden="true" tabindex="-1" href="#8-hướng-dẫn-tích-hợp-cho-ứng-dụng-mới"><span class="octicon octicon-link"></span></a>8. Hướng Dẫn Tích Hợp Cho Ứng Dụng Mới</h2>
+    <h3 id="bước-1--khai-báo-dữ-liệu-one-time-setup"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bước-1--khai-báo-dữ-liệu-one-time-setup"><span class="octicon octicon-link"></span></a>Bước 1 — Khai báo dữ liệu (One-time Setup)</h3>
+    <p>Thực hiện các bước theo thứ tự <a href="#3-lu%E1%BB%93ng-thi%E1%BA%BFt-l%E1%BA%ADp-ban-%C4%91%E1%BA%A7u-setup-flow">Mục 3</a>.</p>
+    <p>Có thể dùng <strong>AuthServiceAdmin</strong> (Blazor Admin UI) hoặc gọi API trực tiếp qua Postman/Swagger.</p>
+    <h3 id="bước-2--lưu-cấu-hình-phía-client"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bước-2--lưu-cấu-hình-phía-client"><span class="octicon octicon-link"></span></a>Bước 2 — Lưu cấu hình phía client</h3>
+    <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// appsettings.json của ứng dụng client</span>
+</span><span class="code-line line-number" line="2"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"AuthService"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    <span class="token property">"BaseUrl"</span><span class="token operator">:</span> <span class="token string">"http://your-auth-service-host:5000"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">    <span class="token property">"RegKey"</span><span class="token operator">:</span> <span class="token string">"api-key-nhận-được-khi-đăng-ký-company"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">    <span class="token property">"AppNumber"</span><span class="token operator">:</span> <span class="token string">"FnBInv"</span>
+</span><span class="code-line line-number" line="7">  <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="// appsettings.json của ứng dụng client
+{
+  &#x22;AuthService&#x22;: {
+    &#x22;BaseUrl&#x22;: &#x22;http://your-auth-service-host:5000&#x22;,
+    &#x22;RegKey&#x22;: &#x22;api-key-nhận-được-khi-đăng-ký-company&#x22;,
+    &#x22;AppNumber&#x22;: &#x22;FnBInv&#x22;
+  }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <h3 id="bước-3--implement-authservice-client"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bước-3--implement-authservice-client"><span class="octicon octicon-link"></span></a>Bước 3 — Implement AuthService Client</h3>
+    <pre class="language-csharp"><code class="language-csharp code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// Pseudo-code cho .NET client</span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthServiceClient</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name">HttpClient</span> _http<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="5">    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">string</span></span> _regKey<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="6">    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">string</span></span> _appNumber<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8">    <span class="token comment">// Gọi login</span>
+</span><span class="code-line line-number" line="9">    <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&#x3C;</span>LoginResponse<span class="token punctuation">></span></span> <span class="token function">LoginAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> userName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> password<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="10">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="11">        _http<span class="token punctuation">.</span>DefaultRequestHeaders<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"x-api-key"</span><span class="token punctuation">,</span> _regKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="12">        
+</span><span class="code-line line-number" line="13">        <span class="token class-name"><span class="token keyword">var</span></span> body <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">{</span> UserName <span class="token operator">=</span> userName<span class="token punctuation">,</span> Password <span class="token operator">=</span> password<span class="token punctuation">,</span> AppNumber <span class="token operator">=</span> _appNumber <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="14">        <span class="token class-name"><span class="token keyword">var</span></span> response <span class="token operator">=</span> <span class="token keyword">await</span> _http<span class="token punctuation">.</span><span class="token function">PostAsJsonAsync</span><span class="token punctuation">(</span><span class="token string">"/api/auth/login"</span><span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="15">        <span class="token class-name"><span class="token keyword">var</span></span> result <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span>Content<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">ReadFromJsonAsync</span><span class="token generic class-name"><span class="token punctuation">&#x3C;</span>BOProcessResult<span class="token punctuation">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="16">        
+</span><span class="code-line line-number" line="17">        <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">.</span>OK<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="18">            <span class="token keyword">return</span> result<span class="token punctuation">.</span>Object <span class="token keyword">as</span> <span class="token class-name">LoginResponse</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="19">        
+</span><span class="code-line line-number" line="20">        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">AuthException</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>Message<span class="token punctuation">,</span> result<span class="token punctuation">.</span>ErrorCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="21">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="22">
+</span><span class="code-line line-number" line="23">    <span class="token comment">// Gọi refresh token (trong Interceptor)</span>
+</span><span class="code-line line-number" line="24">    <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&#x3C;</span>LoginResponse<span class="token punctuation">></span></span> <span class="token function">RefreshAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> accessToken<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> refreshToken<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="25">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="26">        <span class="token class-name"><span class="token keyword">var</span></span> body <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">{</span> AccessToken <span class="token operator">=</span> accessToken<span class="token punctuation">,</span> RefreshToken <span class="token operator">=</span> refreshToken<span class="token punctuation">,</span> AppNumber <span class="token operator">=</span> _appNumber <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="27">        <span class="token class-name"><span class="token keyword">var</span></span> response <span class="token operator">=</span> <span class="token keyword">await</span> _http<span class="token punctuation">.</span><span class="token function">PostAsJsonAsync</span><span class="token punctuation">(</span><span class="token string">"/api/auth/refresh-token"</span><span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="28">        <span class="token comment">// ...</span>
+</span><span class="code-line line-number" line="29">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="30">
+</span><span class="code-line line-number" line="31">    <span class="token comment">// Kiểm tra quyền từ MergedRights (không cần gọi API)</span>
+</span><span class="code-line line-number" line="32">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">HasRight</span><span class="token punctuation">(</span><span class="token class-name">List<span class="token punctuation">&#x3C;</span>ObjectRight<span class="token punctuation">></span></span> mergedRights<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> objectNumber<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> rightType<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="33">    <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="34">        <span class="token class-name"><span class="token keyword">var</span></span> obj <span class="token operator">=</span> mergedRights<span class="token punctuation">.</span><span class="token function">FirstOrDefault</span><span class="token punctuation">(</span>r <span class="token operator">=></span> r<span class="token punctuation">.</span>ObjectNumber <span class="token operator">==</span> objectNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="35">        <span class="token keyword">return</span> rightType<span class="token punctuation">.</span><span class="token function">ToLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">switch</span>
+</span><span class="code-line line-number" line="36">        <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="37">            <span class="token string">"list"</span>   <span class="token operator">=></span> obj<span class="token punctuation">?.</span>CanList <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="38">            <span class="token string">"read"</span>   <span class="token operator">=></span> obj<span class="token punctuation">?.</span>CanRead <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="39">            <span class="token string">"create"</span> <span class="token operator">=></span> obj<span class="token punctuation">?.</span>CanCreate <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="40">            <span class="token string">"update"</span> <span class="token operator">=></span> obj<span class="token punctuation">?.</span>CanUpdate <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="41">            <span class="token string">"delete"</span> <span class="token operator">=></span> obj<span class="token punctuation">?.</span>CanDelete <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="42">            _ <span class="token operator">=></span> <span class="token boolean">false</span>
+</span><span class="code-line line-number" line="43">        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="44">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="45"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="// Pseudo-code cho .NET client
+public class AuthServiceClient
+{
+    private readonly HttpClient _http;
+    private readonly string _regKey;
+    private readonly string _appNumber;
+
+    // Gọi login
+    public async Task<LoginResponse> LoginAsync(string userName, string password)
+    {
+        _http.DefaultRequestHeaders.Add(&#x22;x-api-key&#x22;, _regKey);
+        
+        var body = new { UserName = userName, Password = password, AppNumber = _appNumber };
+        var response = await _http.PostAsJsonAsync(&#x22;/api/auth/login&#x22;, body);
+        var result = await response.Content.ReadFromJsonAsync<BOProcessResult>();
+        
+        if (result.OK)
+            return result.Object as LoginResponse;
+        
+        throw new AuthException(result.Message, result.ErrorCode);
+    }
+
+    // Gọi refresh token (trong Interceptor)
+    public async Task<LoginResponse> RefreshAsync(string accessToken, string refreshToken)
+    {
+        var body = new { AccessToken = accessToken, RefreshToken = refreshToken, AppNumber = _appNumber };
+        var response = await _http.PostAsJsonAsync(&#x22;/api/auth/refresh-token&#x22;, body);
+        // ...
+    }
+
+    // Kiểm tra quyền từ MergedRights (không cần gọi API)
+    public bool HasRight(List<ObjectRight> mergedRights, string objectNumber, string rightType)
+    {
+        var obj = mergedRights.FirstOrDefault(r => r.ObjectNumber == objectNumber);
+        return rightType.ToLower() switch
+        {
+            &#x22;list&#x22;   => obj?.CanList ?? false,
+            &#x22;read&#x22;   => obj?.CanRead ?? false,
+            &#x22;create&#x22; => obj?.CanCreate ?? false,
+            &#x22;update&#x22; => obj?.CanUpdate ?? false,
+            &#x22;delete&#x22; => obj?.CanDelete ?? false,
+            _ => false
+        };
+    }
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <h3 id="bước-4--bảo-vệ-màn-hìnhendpoint-phía-client"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bước-4--bảo-vệ-màn-hìnhendpoint-phía-client"><span class="octicon octicon-link"></span></a>Bước 4 — Bảo vệ màn hình/endpoint phía client</h3>
+    <pre class="language-csharp"><code class="language-csharp code-highlight"><span class="code-line line-number" line="1"><span class="token comment">// Blazor Page Example</span>
+</span><span class="code-line line-number" line="2">@<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">HasRight</span><span class="token punctuation">(</span><span class="token string">"STKM"</span><span class="token punctuation">,</span> <span class="token string">"create"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="3"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="4">    <span class="token operator">&#x3C;</span><span class="token class-name">button</span> @onclick<span class="token operator">=</span><span class="token string">"OpenCreateDialog"</span><span class="token operator">></span><span class="token operator">+</span> Thêm mới<span class="token operator">&#x3C;</span><span class="token operator">/</span>button<span class="token operator">></span>
+</span><span class="code-line line-number" line="5"><span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7">@<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">HasRight</span><span class="token punctuation">(</span><span class="token string">"STK_IN"</span><span class="token punctuation">,</span> <span class="token string">"list"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="9">    <span class="token operator">&#x3C;</span>StockInList <span class="token operator">/</span><span class="token operator">></span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">}</span>
+</span></code><div onclick="copied(this)" data-code="// Blazor Page Example
+@if (HasRight(&#x22;STKM&#x22;, &#x22;create&#x22;))
+{
+    <button @onclick=&#x22;OpenCreateDialog&#x22;>+ Thêm mới</button>
+}
+
+@if (HasRight(&#x22;STK_IN&#x22;, &#x22;list&#x22;))
+{
+    <StockInList />
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    <hr>
+    <p><em>Tài liệu này được tạo tự động từ source code. Cập nhật lần cuối: 2026-05-12.</em></p>
+    <script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
+
+function copied(target, str) {
+  target.classList.add('active');
+  copyTextToClipboard(target.dataset.code, function() {
+    setTimeout(() => {
+      target.classList.remove('active');
+    }, 2000);
+  });
+}</script>
+  </div></body>
+</html>
