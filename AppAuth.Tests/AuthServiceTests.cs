@@ -54,7 +54,7 @@ namespace AppAuth.Tests
         {
             // Arrange
             _apiKeyService.Setup(s => s.ValidateApiKeyAsync(It.IsAny<string>()))
-                .ReturnsAsync((Company)null);
+                .ReturnsAsync((Company?)null);
 
             // Act
             var result = await _authService.AuthenticateAsync("invalid_key", new LoginRequest());

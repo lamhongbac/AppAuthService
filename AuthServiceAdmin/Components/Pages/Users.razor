@@ -272,7 +272,7 @@
         }
     }
 
-    private async Task OnCompanyChanged()
+    private void OnCompanyChanged()
     {
         filteredApps = null;
         assignRequest.AppNumber = "";
@@ -288,9 +288,9 @@
         }
     }
 
-    private async Task OnUserSelectionChanged()
+    private void OnUserSelectionChanged()
     {
-        await LoadRolesForUser();
+        LoadRolesForUser();
     }
 
     private async Task OnAppSelectionChanged()
@@ -313,11 +313,11 @@
                 filteredRoles = new();
             }
 
-            await LoadRolesForUser();
+            LoadRolesForUser();
         }
     }
 
-    private async Task LoadRolesForUser()
+    private void LoadRolesForUser()
     {
         assignRequest.RoleNumbers.Clear();
     }
@@ -394,7 +394,7 @@
             if (result.OK)
             {
                 successMessage = result.Message ?? "User roles assigned successfully!";
-                await LoadRolesForUser();
+                LoadRolesForUser();
             }
             else
             {

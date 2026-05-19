@@ -16,7 +16,7 @@ namespace AuthService.Shared
         {
             
         }
-        public UserData UserInfo { get; set; }
-        public JwtData jwtInfo { get; set; }
+        public UserData UserInfo { get; set; } = null!;
+        public JwtData jwtInfo { get; set; } = null!;
     }
 }

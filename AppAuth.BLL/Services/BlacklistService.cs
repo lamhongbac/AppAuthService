@@ -28,21 +28,27 @@ namespace AppAuth.BLL.Services
             }
         }
 
+#pragma warning disable CS1998
         public async Task<bool> IsIpBlacklistedAsync(string ip)
+#pragma warning restore CS1998
         {
-            var data = await ReadDataAsync();
+            var data = ReadDataAsync();
             return data.Ips.Any(x => x.Value == ip);
         }
 
+#pragma warning disable CS1998
         public async Task<bool> IsUserBlacklistedAsync(string username)
+#pragma warning restore CS1998
         {
-            var data = await ReadDataAsync();
+            var data = ReadDataAsync();
             return data.Usernames.Any(x => x.Value == username);
         }
 
+#pragma warning disable CS1998
         public async Task AddToBlacklistAsync(string type, string value, string reason)
+#pragma warning restore CS1998
         {
-            var data = await ReadDataAsync();
+            var data = ReadDataAsync();
             var entry = new BlacklistEntry { Value = value, Reason = reason, CreatedAt = DateTime.UtcNow };
 
             if (type.ToLower() == "ip")
@@ -54,21 +60,23 @@ namespace AppAuth.BLL.Services
                 if (!data.Usernames.Any(x => x.Value == value)) data.Usernames.Add(entry);
             }
 
-            await SaveDataAsync(data);
+            SaveDataAsync(data);
         }
 
+#pragma warning disable CS1998
         public async Task RemoveFromBlacklistAsync(string type, string value)
+#pragma warning restore CS1998
         {
-            var data = await ReadDataAsync();
+            var data = ReadDataAsync();
             if (type.ToLower() == "ip")
                 data.Ips.RemoveAll(x => x.Value == value);
             else
                 data.Usernames.RemoveAll(x => x.Value == value);
 
-            await SaveDataAsync(data);
+            SaveDataAsync(data);
         }
 
-        private async Task<BlacklistData> ReadDataAsync()
+        private BlacklistData ReadDataAsync()
         {
             lock (_lock)
             {
@@ -77,14 +85,13 @@ namespace AppAuth.BLL.Services
             }
         }
 
-        private async Task SaveDataAsync(BlacklistData data)
+        private void SaveDataAsync(BlacklistData data)
         {
             lock (_lock)
             {
                 string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(_filePath, json);
             }
-            await Task.CompletedTask;
         }
     }
 

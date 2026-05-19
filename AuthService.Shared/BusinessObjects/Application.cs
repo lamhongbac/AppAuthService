@@ -1,5 +1,4 @@
 using MSA.Shared.DataTypes;
-using MSA.Shared.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +14,13 @@ namespace AuthService.Shared.BusinessObjects
     /// </summary>
     public class Application:BaseObject
     {
-        public string ApiKey { get; set; } // for 
+        public string ApiKey { get; set; } = string.Empty; // for 
 
-        public string AppKey { get; set; }
+        public string AppKey { get; set; } = string.Empty;
 
-        public string Issuer { get; set; }
+        public string Issuer { get; set; } = string.Empty;
 
-        public string Audience { get; set; }
+        public string Audience { get; set; } = string.Empty;
 
         public int? Expire { get; set; }
 

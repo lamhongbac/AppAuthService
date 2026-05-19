@@ -213,6 +213,10 @@ namespace AppAuth.BLL.Services
                 var jwtUtil = new JwtUtil(finalConfig, refTokenData);
                 
                 var jwtResult = await jwtUtil.GenerateJwt(userData);
+                if (jwtResult == null)
+                {
+                    return BOProcessResult.Failure("Failed to generate token", (int)AuthServiceErrorCode.SystemError);
+                }
 
                 // 9. Trả về LoginResponse
                 var response = new LoginResponse
@@ -269,7 +273,7 @@ namespace AppAuth.BLL.Services
                 }
 
                 // 3. Lấy JwtConfig và JwtUtil
-                var jwtConfig = await GetJwtConfig(app, company);
+                var jwtConfig = GetJwtConfig(app, company);
                 var refTokenData = new RefTokenData(_refreshTokenRepository);
                 var jwtUtil = new JwtUtil(jwtConfig, refTokenData);
 
@@ -407,7 +411,7 @@ namespace AppAuth.BLL.Services
                     return BOProcessResult.Failure("Original application not found", (int)AuthServiceErrorCode.AppNotFound);
                 }
 
-                var oldJwtConfig = await GetJwtConfig(oldApp, company);
+                var oldJwtConfig = GetJwtConfig(oldApp, company);
                 var refTokenData = new RefTokenData(_refreshTokenRepository);
                 var oldJwtUtil = new JwtUtil(oldJwtConfig, refTokenData);
 
@@ -455,7 +459,7 @@ namespace AppAuth.BLL.Services
                 };
 
                 // 8. Sinh JWT cho App đích
-                var targetJwtConfig = await GetJwtConfig(targetApp, company);
+                var targetJwtConfig = GetJwtConfig(targetApp, company);
                 var targetJwtUtil = new JwtUtil(targetJwtConfig, refTokenData);
 
                 var jwtResult = await targetJwtUtil.GenerateJwt(userData);
@@ -526,7 +530,7 @@ namespace AppAuth.BLL.Services
             }
         }
 
-        private async Task<AppAuth.Utils.JwtConfig> GetJwtConfig(global::AuthService.DAL.Models.Application app, global::AuthService.DAL.Models.Company company)
+        private AppAuth.Utils.JwtConfig GetJwtConfig(global::AuthService.DAL.Models.Application app, global::AuthService.DAL.Models.Company company)
         {
             var appConfig = new AppAuth.Utils.JwtConfig
             {
